@@ -1,29 +1,22 @@
-# README #
+# bx-CommandToolKit
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## 概要
+コマンドを並べることで順番に処理を行う機能を提供します。
 
-### What is this repository for? ###
+## 依存関係
+・UniRx  
+・UniTask
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## 著者
+BeXide Inc.
+村上 和樹
 
-### How do I get set up? ###
+## Unityバージョン
+Unity2021.3以降
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## インストール
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+## 使い方
+・各プロジェクトでPackageManagerからダウンロードをします。 
+・PGはプロジェクトごとにパラメータ群となるコマンドと実行するランナーを作成・登録をしていきます。 
+・GDはシナリオファイルを作成し、用意されたコマンドを並べていきます。 
