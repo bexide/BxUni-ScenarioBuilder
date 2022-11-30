@@ -1,6 +1,9 @@
 
 namespace BX.CommandToolKit 
 {
+    /// <summary>
+    /// JumpCommandが流れてきた時に処理を実行するコンポーネント
+    /// </summary>
     public class JumpCommandRunner : BaseCommandRunner
     {
         /// <summary>

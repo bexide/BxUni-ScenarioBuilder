@@ -11,6 +11,9 @@ using BX.CommandToolKitInternal;
 
 namespace BX.CommandToolKit
 {
+    /// <summary>
+    /// コマンドの処理を行う
+    /// </summary>
     public class CommandEngine
     {
         #region Property

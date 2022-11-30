@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace BX.CommandToolKit
 {
+    /// <summary>
+    /// 実行するコマンドのリストを保持するアセット
+    /// </summary>
     [System.Serializable]
     public partial class ScenarioData : ScriptableObject
     {

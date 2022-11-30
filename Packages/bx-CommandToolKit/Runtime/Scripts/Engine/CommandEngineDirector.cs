@@ -6,6 +6,9 @@ using Cysharp.Threading.Tasks;
 
 namespace BX.CommandToolKit
 {
+    /// <summary>
+    /// コマンドを実行するコンポーネント
+    /// </summary>
     public sealed class CommandEngineDirector : MonoBehaviour
     {
 #pragma warning disable 0649
