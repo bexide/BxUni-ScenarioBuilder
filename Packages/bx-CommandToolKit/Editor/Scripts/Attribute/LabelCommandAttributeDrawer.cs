@@ -5,7 +5,7 @@ using UnityEditor;
 namespace BX.CommandToolKit.Editor
 {
     [CustomPropertyDrawer(typeof(LabelCommandAttribute))]
-    public sealed class LabelCommandAttributeDrawer : PropertyDrawer
+    internal sealed class LabelCommandAttributeDrawer : PropertyDrawer
     {
 
         static readonly string[] k_defaultList = new string[]

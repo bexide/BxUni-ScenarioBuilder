@@ -7,6 +7,9 @@ namespace BX.CommandToolKit
     /// </summary>
     public abstract class BaseCommandRunner : MonoBehaviour
     {
+        /// <summary>
+        /// 各ランナーのリセット処理
+        /// </summary>
         public virtual void ResetRunner()
         {
 

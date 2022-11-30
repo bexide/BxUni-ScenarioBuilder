@@ -2,7 +2,7 @@
 namespace BX.CommandToolKit
 {
     /// <summary>
-    /// どこかのラベルに遷移するためのInterface
+    /// どこかのラベルに遷移するためのコマンドに実装するInterface
     /// </summary>
     public interface IJumpCommand
     {

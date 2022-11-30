@@ -4,7 +4,7 @@ using UnityEditor;
 namespace BX.CommandToolKit.Editor 
 {
     [CustomCommandEditor(typeof(LabelCommand))]
-    public class LabelCommandCustomEditor : CustomCommandEditor
+    internal class LabelCommandCustomEditor : CustomCommandEditor
     {
 
         LabelCommand Target => target as LabelCommand;

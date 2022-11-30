@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace BX.CommandToolKit
 {
+    /// <summary>
+    /// targetLabelで指定した文字列と一致するLabelCommandまでジャンプするコマンド。
+    /// </summary>
     public class JumpCommand : BaseCommand
         , IJumpCommand
     {

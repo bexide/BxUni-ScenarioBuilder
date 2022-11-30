@@ -64,6 +64,7 @@ namespace BX.CommandToolKit
         /// <summary>終了時の通知</summary>
         public IObservable<Unit> OnEnd => Engine.OnEnd;
 
+        /// <summary>リセット時の通知</summary>
         public IObservable<Unit> OnReset => Engine.OnReset;
 
         #endregion

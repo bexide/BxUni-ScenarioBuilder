@@ -3,6 +3,9 @@ using UnityEditor;
 
 namespace BX.CommandToolKit.EditorInternal
 {
+    /// <summary>
+    /// 画面下部のヘルプ表示部分
+    /// </summary>
     internal class CommandHelpArea
     {
         #region const

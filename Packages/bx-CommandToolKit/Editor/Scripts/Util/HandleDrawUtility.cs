@@ -4,7 +4,7 @@ using BX.CommandToolKit.EditorInternal;
 
 namespace BX.CommandToolKit.Editor
 {
-    public static class HandleDrawUtility
+    internal static class HandleDrawUtility
     {
 
         public static void DrawRectBox(Rect rect, Color color)

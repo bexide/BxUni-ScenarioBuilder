@@ -4,7 +4,7 @@ using UnityEditor;
 namespace BX.CommandToolKit.Editor
 {
     [CustomCommandEditor(typeof(JumpCommand))]
-    public class JumpCommandCustomEditor : CustomCommandEditor
+    internal class JumpCommandCustomEditor : CustomCommandEditor
     {
 
         JumpCommand Target => target as JumpCommand;

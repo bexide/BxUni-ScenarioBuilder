@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace BX.CommandToolKit
 {
+    /// <summary>
+    /// フラグの役割をもつコマンド。
+    /// <para>JumpCommandの飛び先等で使用する</para>
+    /// </summary>
     [System.Serializable]
     public class LabelCommand : BaseCommand
     {
