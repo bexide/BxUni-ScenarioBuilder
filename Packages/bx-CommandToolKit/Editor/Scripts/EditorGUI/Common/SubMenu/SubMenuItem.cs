@@ -33,7 +33,7 @@ namespace BX.CommandToolKit.EditorInternal
         {
             if (IsSeparator()) { return; }
 
-            Debug.Assert(Callback != null, "Callbackが設定されていません");
+            Debug.Assert(Callback != null, "Callback not configured...");
             Callback?.Invoke();
         }
 

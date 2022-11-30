@@ -117,7 +117,7 @@ namespace BX.CommandToolKit
         /// <param name="runners">実行対象</param>
         public void Initialize(BaseCommand[] commands, BaseCommandRunner[] runners)
         {
-            Debug.Assert(commands != null, "第一引数のcommandsがnullです");
+            Debug.Assert(commands != null, "The first argument \"commands\" is null.");
             if (commands == null) { return; }
 
             //プロパティの初期化
@@ -175,7 +175,7 @@ namespace BX.CommandToolKit
         /// <param name="runners">実行対象</param>
         public void Initialize(ScenarioData scenario, BaseCommandRunner[] runners)
         {
-            Debug.Assert(scenario != null, "第一引数のscenarioがnullです");
+            Debug.Assert(scenario != null, "The first argument \"scenario\" is null.");
             if(scenario == null) { return; }
 
             Initialize(scenario.Commands.ToArray(), runners);
@@ -196,7 +196,7 @@ namespace BX.CommandToolKit
         {
             Debug.Assert(
                 RunCommands != null && RunCommands.Any(),
-                "シナリオが設定されていません。Initializeを事前に実行してください"
+                "Pre-execute the \"Initialize()\" method"
             );
             if(RunCommands == null || !RunCommands.Any()) { return; }
 
@@ -212,11 +212,11 @@ namespace BX.CommandToolKit
             {
                 if (ct.IsCancellationRequested)
                 {
-                    Debug.LogWarning("外部のCancellationTokenがキャンセルされました。");
+                    Debug.LogWarning("External CancellationToken cancelled.");
                 }
                 else
                 {
-                    Debug.LogWarning("Skipされました");
+                    Debug.LogWarning("Skipped.");
                 }
             }
             catch(Exception ex)
@@ -282,7 +282,7 @@ namespace BX.CommandToolKit
             //処理するRunnerが存在しなければエラーで返す
             if(!JumpRunnerTable.TryGetValue(jumpCommand.GetType(), out var runnerData))
             {
-                Debug.LogError($"{jumpCommand.GetType()}を処理するRunnerが存在しません");
+                Debug.LogError($"There is no Runner to process the command. [{jumpCommand.GetType()}]");
                 return (currentCommand, currentIndex);
             }
 
@@ -302,7 +302,7 @@ namespace BX.CommandToolKit
                         return true;
                     }
                 }
-                Debug.LogError($"{targetLabel}に対するLabelCommandが見つかりませんでした");
+                Debug.LogError($"Not found Label [{targetLabel}]");
                 return false;
             }
 

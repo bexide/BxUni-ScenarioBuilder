@@ -107,7 +107,7 @@ namespace BX.CommandToolKit.EditorInternal
             var scenario = ScenarioEditFlowWindow.Instance?.CurrentEditData;
             if (scenario == null)
             {
-                Debug.LogError("Scenarioデータが設定されていません");
+                Debug.LogError("Scenario data not set.");
                 return;
             }
 
@@ -128,7 +128,7 @@ namespace BX.CommandToolKit.EditorInternal
             var scenario = ScenarioEditFlowWindow.Instance?.CurrentEditData;
             if (scenario == null)
             {
-                Debug.LogError("Scenarioデータが設定されていません");
+                Debug.LogError("Scenario data not set.");
                 return;
             }
 
