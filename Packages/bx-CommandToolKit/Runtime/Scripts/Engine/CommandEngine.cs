@@ -295,10 +295,10 @@ namespace BX.CommandToolKit
                 for(int i=0; i<size; i++)
                 {
                     var command = commands[i];
-                    if(!(command is LabelCommand labelStatement)) { continue; }
-                    if(labelStatement.Name == targetLabel)
+                    if(!(command is LabelCommand labelCommand)) { continue; }
+                    if(labelCommand.Name == targetLabel)
                     {
-                        result = (labelStatement, i);
+                        result = (labelCommand, i);
                         return true;
                     }
                 }

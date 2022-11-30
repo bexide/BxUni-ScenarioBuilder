@@ -24,8 +24,8 @@ namespace BX.CommandToolKit.Editor
 
             string[] list = k_defaultList.Concat(
                     data.Commands
-                    .Where(statement => statement is LabelCommand)
-                    .Select(statement => (statement as LabelCommand).Name)
+                    .Where(command => command is LabelCommand)
+                    .Select(command => (command as LabelCommand).Name)
                     .Where(name => !string.IsNullOrEmpty(name))
                 ).ToArray();
 

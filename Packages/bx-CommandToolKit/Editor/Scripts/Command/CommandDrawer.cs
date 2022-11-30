@@ -85,12 +85,12 @@ namespace BX.CommandToolKit.EditorInternal
             return Activator.CreateInstance(classType) as BaseCommand;
         }
 
-        object CreateCustomCommandEditorInstance(Type t, BaseCommand statement)
+        object CreateCustomCommandEditorInstance(Type t, BaseCommand command)
         {
             var instance  = Activator.CreateInstance(t);
             var bindFlags = BindingFlags.NonPublic | BindingFlags.Instance;
             t.GetMethod(CustomCommandEditor.SetupMethodName, bindFlags)
-             .Invoke(instance, new object[] { statement });
+             .Invoke(instance, new object[] { command });
             return instance;
         }
 

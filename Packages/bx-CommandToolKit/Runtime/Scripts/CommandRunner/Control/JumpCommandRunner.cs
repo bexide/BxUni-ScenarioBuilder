@@ -6,12 +6,12 @@ namespace BX.CommandToolKit
         /// <summary>
         /// ラベルへジャンプ
         /// </summary>
-        /// <param name="statement"></param>
+        /// <param name="command"></param>
         /// <returns></returns>
         [CommandRunner(typeof(JumpCommand))]
-        public string DoJump(JumpCommand statement)
+        public string DoJump(JumpCommand command)
         {
-            return statement.TargetLabel;
+            return command.TargetLabel;
         }
 
     }
