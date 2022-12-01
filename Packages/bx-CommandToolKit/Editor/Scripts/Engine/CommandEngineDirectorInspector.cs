@@ -63,7 +63,14 @@ namespace BX.CommandToolKit.EditorInternal
                             });
                     });
 
-                EditorGUILayout.LabelField("[Runner Type]", "[Runner Object]");
+                var width = GUILayout.Width(EditorGUIUtility.currentViewWidth / 3f);
+
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    EditorGUILayout.LabelField("[Runner Object]", width);
+                    EditorGUILayout.LabelField("[Runner Component]", width);
+                    EditorGUILayout.LabelField("[Command Type]", width);
+                }
                 
                 var rect = GUILayoutUtility.GetLastRect();
                 rect.y      = rect.yMax;
@@ -72,7 +79,12 @@ namespace BX.CommandToolKit.EditorInternal
 
                 foreach (var (type, runner) in runners)
                 {
-                    EditorGUILayout.LabelField(type.Name, runner.name);
+                    using (new EditorGUILayout.HorizontalScope())
+                    {
+                        EditorGUILayout.LabelField(runner.name, width);
+                        EditorGUILayout.LabelField(runner.GetType().Name, width);
+                        EditorGUILayout.LabelField(type.Name, width);
+                    }
                 }
             }
         }
