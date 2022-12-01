@@ -21,7 +21,7 @@ namespace BX.CommandToolKit.EditorInternal
 
         internal void DrawLayout()
         {
-            if (m_foldout.DrawLayout(m_groupName, m_color))
+            if (m_foldout.DrawLayout(m_groupName, Color))
             {
                 foreach(var drawer in m_commandDrawers)
                 {

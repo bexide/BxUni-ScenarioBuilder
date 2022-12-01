@@ -72,6 +72,7 @@ namespace BX.CommandToolKit.EditorInternal
         {
             var style = GetStyle();
 
+            color.a = 1.0f;
             using (new BackgroundColorScope(color))
             {
                 GUILayout.Box(title, style);
