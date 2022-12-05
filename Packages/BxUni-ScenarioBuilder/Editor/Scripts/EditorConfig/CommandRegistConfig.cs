@@ -31,7 +31,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         }
         static CommandDrawerGroup[] s_allCommandGroup;
 
-        [ScenarioBuilderEditorMenuItem("Edit/Reset Window", 89999999)]
+        [ScenarioBuilderEditorMenuItem("Edit/Reset Window", 89999998)]
         internal static void ResetCache()
         {
             s_allCommandGroup = null;

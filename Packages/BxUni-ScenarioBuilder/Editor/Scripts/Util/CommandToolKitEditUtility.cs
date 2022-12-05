@@ -212,6 +212,23 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             Debug.Log($"<color=yellow>{sb}</color>");
         }
 
+        [ScenarioBuilderEditorMenuItem("Edit/ClearCommands", 89999999)]
+        internal static void CurrentEditScenarioClearCommands()
+        {
+            bool ok = EditorUtility.DisplayDialog(
+                title  : "Attention",
+                message: "現在作業中のシナリオ内のコマンドをクリアします。\nよろしいですか？",
+                ok     : "OK",
+                cancel : "Cancel");
+            if (!ok) { return; }
+
+            var editData = ScenarioEditFlowWindow.Instance?.CurrentEditData;
+            if (editData == null) { return; }
+
+            editData.Commands.Clear();
+            EditorUtility.SetDirty(editData);
+        }
+
         #endregion
     }
 }
