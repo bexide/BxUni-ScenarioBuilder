@@ -1,0 +1,20 @@
+{
+    "name": "BX.CommandToolKit.Sample.GameObjectControl.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6600a55e097ada8448f7b8ad8affc813",
+        "GUID:75b741644c1681940aaaf34399b77768",
+        "GUID:2266025fd76b53e4a80db78fc932aff7"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
