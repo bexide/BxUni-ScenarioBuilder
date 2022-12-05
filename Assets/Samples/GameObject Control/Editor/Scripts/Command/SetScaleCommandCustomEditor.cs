@@ -15,5 +15,18 @@ namespace BxUni.ScenarioBuilder.Sample.GameObjectControl.Editor
             EditorGUI.LabelField(
                 rect, $"SetScale [{Cmd.ID}] - {Cmd.Scale}");
         }
+
+        public override bool Validate(out string errorLog)
+        {
+            errorLog = string.Empty;
+
+            if (string.IsNullOrEmpty(Cmd.ID))
+            {
+                errorLog = "IDを入力してください";
+            }
+
+            //エラーログが空文字なら問題なし
+            return string.IsNullOrEmpty(errorLog);
+        }
     }
 }

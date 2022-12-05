@@ -60,5 +60,16 @@ namespace BxUni.ScenarioBuilder.Editor
         {
             return 128.0f;
         }
+
+        /// <summary>
+        /// 有効なコマンドかチェックする
+        /// </summary>
+        /// <param name="errorLog">失敗時のエラーログ</param>
+        /// <returns></returns>
+        public virtual bool Validate(out string errorLog)
+        {
+            errorLog = string.Empty;
+            return true;
+        }
     }
 }

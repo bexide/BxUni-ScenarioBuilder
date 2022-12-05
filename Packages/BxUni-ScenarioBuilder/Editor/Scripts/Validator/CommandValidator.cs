@@ -7,7 +7,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 {
     internal static class CommandValidator
     {
-        static ICommandValidator[] s_usingValidators = new ICommandValidator[0];
+        static CustomCommandEditor[] s_customEditors = new CustomCommandEditor[0];
 
         /// <summary>
         /// 有効なステートかチェックする
@@ -19,37 +19,51 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         {
             errorLog = string.Empty;
 
-            var validator = FindValidator(command);
-            if(validator == null)
+            var editor = FindCustomCommandEditor(command);
+            if(editor == null)
             {//Validatorは特に見つからなかったのでtrue
                 return true;
             }
 
-            return validator.Validate(command, out errorLog);
+            return editor.Validate(out errorLog);
         }
 
-        static ICommandValidator FindValidator(BaseCommand command)
+        static CustomCommandEditor FindCustomCommandEditor(BaseCommand command)
         {
             Rebuild();
 
             var targetType = command.GetType();
 
-            var target = s_usingValidators.FirstOrDefault(x => x.TargetType == targetType);
-            if(target is CustomCommandEditor editor)
+            var editor = s_customEditors.FirstOrDefault(x => 
+            {
+                var attr = x.GetType()
+                            .GetCustomAttributes(typeof(CustomCommandEditorAttribute), inherit: true)
+                            .FirstOrDefault();
+                if(attr is CustomCommandEditorAttribute custom)
+                {
+                    return custom.CustomCommandType == targetType;
+                }
+                else
+                {
+                    return false;
+                }
+            });
+
+            if(editor != null)
             {
                 editor.Setup(command);
             }
 
-            return target;
+            return editor;
         }
 
         static void Rebuild()
         {
-            if (s_usingValidators.Any()) { return; }
+            if (s_customEditors.Any()) { return; }
 
-            var types = TypeCache.GetTypesDerivedFrom<ICommandValidator>();
-            s_usingValidators = types
-                .Select(type => (ICommandValidator)Activator.CreateInstance(type))
+            var types = TypeCache.GetTypesWithAttribute<CustomCommandEditorAttribute>();
+            s_customEditors = types
+                .Select(type => (CustomCommandEditor)Activator.CreateInstance(type))
                 .ToArray();
         }
     }
