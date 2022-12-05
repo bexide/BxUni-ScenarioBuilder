@@ -163,8 +163,8 @@
       },
       "url": "https://packages.unity.com"
     },
-    "jp.bexide.commandtoolkit": {
-      "version": "file:bx-CommandToolKit",
+    "jp.co.bexide.scenariobuilder": {
+      "version": "file:BxUni-ScenarioBuilder",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}

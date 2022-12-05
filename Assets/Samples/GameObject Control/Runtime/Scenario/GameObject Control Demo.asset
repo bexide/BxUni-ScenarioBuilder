@@ -12,31 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838a300e457975f4b8347632e37a6e78, type: 3}
   m_Name: GameObject Control Demo
   m_EditorClassIdentifier: 
-  m_commands:
-  - rid: 6616395997167747072
-  - rid: 6616395997167747073
-  - rid: 6616395997167747074
-  - rid: 6616396002977382400
+  m_commands: []
   references:
     version: 2
-    RefIds:
-    - rid: 6616395997167747072
-      type: {class: PrimitiveGameObjectSpawnCommand, ns: BX.CommandToolKit.Sample.GameObjectControl, asm: BX.CommandToolKit.Sample.GameObjectControl.Runtime}
-      data:
-        m_id: Sphere_0
-        m_primitiveType: 0
-    - rid: 6616395997167747073
-      type: {class: SetPositionCommand, ns: BX.CommandToolKit.Sample.GameObjectControl, asm: BX.CommandToolKit.Sample.GameObjectControl.Runtime}
-      data:
-        m_id: Sphere_0
-        m_position: {x: 2, y: 0, z: 0}
-    - rid: 6616395997167747074
-      type: {class: SetRotationCommand, ns: BX.CommandToolKit.Sample.GameObjectControl, asm: BX.CommandToolKit.Sample.GameObjectControl.Runtime}
-      data:
-        m_id: Sphere_0
-        m_rotation: {x: 0, y: 0, z: 0}
-    - rid: 6616396002977382400
-      type: {class: SetScaleCommand, ns: BX.CommandToolKit.Sample.GameObjectControl, asm: BX.CommandToolKit.Sample.GameObjectControl.Runtime}
-      data:
-        m_id: Sphere_0
-        m_scale: {x: 1, y: 1, z: 1}
+    RefIds: []

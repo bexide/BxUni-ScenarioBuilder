@@ -60,6 +60,7 @@
 # doxygen
 /html/
 /latex/
+/Packages/BxUni-ScenarioBuilder/Docments~/Doxygen/
 
 #作業ファイル
 /EditorData/

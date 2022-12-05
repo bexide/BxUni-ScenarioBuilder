@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BX.CommandToolKit.Sample.GameObjectControl
+namespace BxUni.ScenarioBuilder.Sample.GameObjectControl
 {
     /// <summary>
     /// 以下のコマンドが流れた時に処理を行うコンポーネント

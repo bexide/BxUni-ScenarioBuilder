@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BX.CommandToolKit.Sample.GameObjectControl
+namespace BxUni.ScenarioBuilder.Sample.GameObjectControl
 {
     /// <summary>
     /// IDに紐づくGameObjectの位置を設定するコマンド

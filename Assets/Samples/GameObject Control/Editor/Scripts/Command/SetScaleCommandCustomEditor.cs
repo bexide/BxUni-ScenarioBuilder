@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEditor;
-using BX.CommandToolKit.Editor;
+using BxUni.ScenarioBuilder.Editor;
 
-namespace BX.CommandToolKit.Sample.GameObjectControl.Editor
+namespace BxUni.ScenarioBuilder.Sample.GameObjectControl.Editor
 {
     [CustomCommandEditor(typeof(SetScaleCommand))]
     internal class SetScaleCommandCustomEditor : CustomCommandEditor
