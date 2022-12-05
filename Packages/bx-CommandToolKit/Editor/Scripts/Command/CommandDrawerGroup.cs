@@ -17,7 +17,7 @@ namespace BX.CommandToolKit.EditorInternal
 
         internal CommandDrawer[] CommandDrawers => m_commandDrawers;
 
-        internal Color Color => m_color;
+        internal Color Color => m_color.SetAlpha(1f);
 
         internal void DrawLayout()
         {
