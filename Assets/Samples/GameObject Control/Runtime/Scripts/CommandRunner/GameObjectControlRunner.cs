@@ -9,6 +9,7 @@ namespace BxUni.ScenarioBuilder.Sample.GameObjectControl
     /// <para>* PrimitiveGameObjectCommand</para>
     /// <para>* SetPositionCommand</para>
     /// <para>* SetRotationCommand</para>
+    /// <para>* SetScaleCommand</para>
     /// </summary>
     public class GameObjectControlRunner : BaseCommandRunner
     {
