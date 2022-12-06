@@ -56,7 +56,7 @@ namespace BxUni.ScenarioBuilder.Editor
         /// Previewエリア内の表示の高さ
         /// </summary>
         /// <returns></returns>
-        public virtual float GetPreviewAreaHeight()
+        public virtual float GetPreviewAreaHeight(SerializedProperty property)
         {
             return 128.0f;
         }

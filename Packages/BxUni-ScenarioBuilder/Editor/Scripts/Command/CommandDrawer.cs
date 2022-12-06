@@ -204,7 +204,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             }
         }
 
-        internal float GetPreviewAreaHeight(BaseCommand command)
+        internal float GetPreviewAreaHeight(BaseCommand command, SerializedProperty property)
         {
             Rebuild();
 
@@ -216,7 +216,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 {
                     var instance = CreateCustomCommandEditorInstance(t, command);
                     float h = (float)t.GetMethod(CustomCommandEditor.GetPreviewAreaHeightMethodName)
-                     .Invoke(instance, new object[] { });
+                     .Invoke(instance, new object[] { property });
 
                     height = Math.Max(height, h);
                 }

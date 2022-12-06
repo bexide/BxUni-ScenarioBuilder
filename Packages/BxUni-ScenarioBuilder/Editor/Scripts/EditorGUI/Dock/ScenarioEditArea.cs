@@ -181,7 +181,10 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
                 var command = data.Commands[index];
                 var drawer  = command.FindDrawer();
-                return command.Foldout ? drawer.GetPreviewAreaHeight(command) : EditorGUIProperty.ElementHeight;
+                var property = so.FindProperty("m_commands").GetArrayElementAtIndex(index);
+                return command.Foldout
+                    ? drawer.GetPreviewAreaHeight(command, property)
+                    : EditorGUIProperty.ElementHeight;
             }
 
             #endregion
