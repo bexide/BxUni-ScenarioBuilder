@@ -1,14 +1,10 @@
 {
-    "name": "BX.ScenarioBuilder.Sample.GameObjectControl.Editor",
+    "name": "BxUni.ScenarioBuilder.Sample.GameObjectControl.Runtime",
     "rootNamespace": "",
     "references": [
-        "GUID:6600a55e097ada8448f7b8ad8affc813",
-        "GUID:75b741644c1681940aaaf34399b77768",
-        "GUID:2266025fd76b53e4a80db78fc932aff7"
+        "GUID:6600a55e097ada8448f7b8ad8affc813"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

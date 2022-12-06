@@ -1,4 +1,4 @@
 
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("BX.ScenarioBuilder.Editor")]
+[assembly: InternalsVisibleTo("BxUni.ScenarioBuilder.Editor")]

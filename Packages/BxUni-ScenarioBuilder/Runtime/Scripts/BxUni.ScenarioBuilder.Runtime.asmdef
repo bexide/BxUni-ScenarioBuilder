@@ -1,12 +1,11 @@
 {
-    "name": "BX.ScenarioBuilder.Editor",
+    "name": "BxUni.ScenarioBuilder.Runtime",
     "rootNamespace": "",
     "references": [
-        "GUID:6600a55e097ada8448f7b8ad8affc813"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
