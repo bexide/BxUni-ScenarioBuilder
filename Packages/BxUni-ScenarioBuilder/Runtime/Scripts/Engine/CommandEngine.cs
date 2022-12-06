@@ -3,11 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Linq;
 using UnityEngine;
-using UniRx;
-using Cysharp.Threading.Tasks;
 using BxUni.ScenarioBuilderInternal;
+using UniRx;
+
+//UniTaskが使用出来る場合
+#if SCENARIOBUILDER_UNITASK_SUPPORT
+    using Cysharp.Threading.Tasks;
+#endif
 
 namespace BxUni.ScenarioBuilder
 {
@@ -74,14 +79,22 @@ namespace BxUni.ScenarioBuilder
         /// <summary>
         /// 各Runner内のResetRunner処理が終わったあとに実行する処理を登録するためのイベント
         /// </summary>
+#if SCENARIOBUILDER_UNITASK_SUPPORT
         public event Func<UniTask> postResetTask;
+#else
+        public event Func<Task> postResetTask;
+#endif
 
-        #endregion
+#endregion
 
         /// <summary>
         /// リセットを通知します。
         /// </summary>
+#if SCENARIOBUILDER_UNITASK_SUPPORT
         internal async UniTask ResetTask()
+#else
+        internal async Task ResetTask()
+#endif
         {
             IsResetRunning = true;
 
@@ -129,7 +142,7 @@ namespace BxUni.ScenarioBuilder
             JumpRunnerTable.Clear();
             Cancel = new CancellationTokenSource();
 
-            #region 関数内関数定義
+#region 関数内関数定義
             MethodInfo[] FindMethodInfos(BaseCommandRunner runner)
             {
                 return runner
@@ -154,7 +167,7 @@ namespace BxUni.ScenarioBuilder
                     RunnerTable.Add(commandType, runnerData);
                 }
             }
-            #endregion
+#endregion
 
             //commandに対して実行対象のRunnerとMethodを紐づけてテーブルに登録していく
             var allRunners = runners
@@ -188,14 +201,25 @@ namespace BxUni.ScenarioBuilder
         /// 実行（待機無し）
         /// </summary>
         /// <param name="ct"></param>
-        public void Run(CancellationToken ct = default) => RunTask(ct).Forget();
+        public void Run(CancellationToken ct = default)
+        {
+#if SCENARIOBUILDER_UNITASK_SUPPORT
+            RunTask(ct).Forget();
+#else
+            _ = RunTask(ct);
+#endif
+        }
 
         /// <summary>
         /// 実行（終了まで待機）
         /// </summary>
         /// <param name="ct"></param>
         /// <returns></returns>
+#if SCENARIOBUILDER_UNITASK_SUPPORT
         public async UniTask RunTask(CancellationToken ct = default)
+#else
+        public async Task RunTask(CancellationToken ct = default)
+#endif
         {
             Debug.Assert(
                 RunCommands != null && RunCommands.Any(),
@@ -235,7 +259,11 @@ namespace BxUni.ScenarioBuilder
             m_onEndSubject.OnNext(Unit.Default);
         }
 
+#if SCENARIOBUILDER_UNITASK_SUPPORT
         async UniTask RunTaskImpl(CancellationToken ct)
+#else
+        async Task RunTaskImpl(CancellationToken ct)
+#endif
         {
             var commands     = RunCommands;
             int commandCount = commands.Length;
@@ -248,7 +276,11 @@ namespace BxUni.ScenarioBuilder
             }
         }
 
+#if SCENARIOBUILDER_UNITASK_SUPPORT
         async UniTask<int> RunCommandTask(BaseCommand[] commands, int targetIndex, CancellationToken ct)
+#else
+        async Task<int> RunCommandTask(BaseCommand[] commands, int targetIndex, CancellationToken ct)
+#endif
         {
             var (command, index) = await DoJumpTask(commands[targetIndex], targetIndex, commands, ct);
  
@@ -263,18 +295,31 @@ namespace BxUni.ScenarioBuilder
             {
                 runnerData.Invoke(command);
             }
+            else if (runnerData.IsReturnTypeCompair(typeof(Task)))
+            {
+                var task = runnerData.Invoke<Task>(command, ct);
+            }
+#if SCENARIOBUILDER_UNITASK_SUPPORT
             else if (runnerData.IsReturnTypeCompair(typeof(UniTask)))
             {
                 var task = runnerData.Invoke<UniTask>(command, ct);
                 await task;
             }
+#endif
 
             return index;
         }
 
+#if SCENARIOBUILDER_UNITASK_SUPPORT
         async UniTask<(BaseCommand command, int index)> DoJumpTask(
             BaseCommand currentCommand, int currentIndex, BaseCommand[] commands, CancellationToken ct
         )
+#else
+        async Task<(BaseCommand command, int index)> DoJumpTask(
+            BaseCommand currentCommand, int currentIndex, BaseCommand[] commands, CancellationToken ct
+        )
+#endif
+
         {
             //処理するCommandがジャンプ系Commandでなければ今のコマンドのまま
             if(!(currentCommand is IJumpCommand jumpCommand))
@@ -289,7 +334,7 @@ namespace BxUni.ScenarioBuilder
                 return (currentCommand, currentIndex);
             }
 
-            #region 関数内関数定義
+#region 関数内関数定義
 
             bool FindCommand(string targetLabel, out (BaseCommand, int) result)
             {
@@ -309,7 +354,7 @@ namespace BxUni.ScenarioBuilder
                 return false;
             }
 
-            #endregion
+#endregion
 
             if(runnerData.IsReturnTypeCompair(typeof(string)))
             {
@@ -317,6 +362,15 @@ namespace BxUni.ScenarioBuilder
                 return FindCommand(targetLabel, out var result) 
                     ? result : (currentCommand, currentIndex);
             }
+            else if (runnerData.IsReturnTypeCompair(typeof(Task<string>)))
+            {
+                var task = runnerData.Invoke<Task<string>>(jumpCommand, ct);
+                string targetLabel = await task;
+
+                return FindCommand(targetLabel, out var result)
+                    ? result : (currentCommand, currentIndex);
+            }
+#if SCENARIOBUILDER_UNITASK_SUPPORT
             else if (runnerData.IsReturnTypeCompair(typeof(UniTask<string>)))
             {
                 var task = runnerData.Invoke<UniTask<string>>(jumpCommand, ct);
@@ -325,6 +379,7 @@ namespace BxUni.ScenarioBuilder
                 return FindCommand(targetLabel, out var result)
                     ? result : (currentCommand, currentIndex);
             }
+#endif
             else
             {
                 throw new Exception("予期せぬエラーが発生しました。");

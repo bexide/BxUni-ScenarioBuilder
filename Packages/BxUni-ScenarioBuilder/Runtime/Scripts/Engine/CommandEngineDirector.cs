@@ -1,8 +1,13 @@
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UniRx;
-using Cysharp.Threading.Tasks;
+
+//UniTaskが使用出来る場合
+#if SCENARIOBUILDER_UNITASK_SUPPORT
+    using Cysharp.Threading.Tasks;
+#endif
 
 namespace BxUni.ScenarioBuilder
 {
@@ -41,6 +46,8 @@ namespace BxUni.ScenarioBuilder
 
         CommandEngine Engine { get; set; } = new CommandEngine();
 
+        CancellationTokenSource DestroyCts { get; set; } = new CancellationTokenSource();
+
         #endregion
 
         #region Event
@@ -55,8 +62,12 @@ namespace BxUni.ScenarioBuilder
         /// リセット実行前に発火するEvent
         /// <para>OnResetの通知が発行される前</para>
         /// </summary>
-        public event Func<UniTask> preResetTask;
-        
+#if SCENARIOBUILDER_UNITASK_SUPPORT
+        public event Func<UniTask> postResetTask;
+#else
+        public event Func<Task> postResetTask;
+#endif
+
         #endregion
 
         #region IObservable
@@ -77,7 +88,7 @@ namespace BxUni.ScenarioBuilder
             OnStart.Subscribe(_ => onStart?.Invoke()).AddTo(this);
             OnEnd.Subscribe(_ => onEnd?.Invoke()).AddTo(this);
 
-            Engine.postResetTask += PreResetTask;
+            Engine.postResetTask += PostResetTask;
 
             OnReset.Subscribe(_ => 
             {
@@ -113,7 +124,7 @@ namespace BxUni.ScenarioBuilder
         /// <param name="ct">キャンセルトークン</param>
         public void Play(CancellationToken ct = default)
         {
-            PlayTask(ct).Forget();
+            Engine.Run(ct);
         }
 
         /// <summary>
@@ -122,7 +133,11 @@ namespace BxUni.ScenarioBuilder
         /// </summary>
         /// <param name="ct">キャンセルトークン</param>
         /// <returns></returns>
+#if SCENARIOBUILDER_UNITASK_SUPPORT
         public async UniTask PlayTask(CancellationToken ct = default)
+#else
+        public async Task PlayTask(CancellationToken ct = default)
+#endif
         {
             await Engine.RunTask(ct);
         }
@@ -140,17 +155,36 @@ namespace BxUni.ScenarioBuilder
         /// </summary>
         internal void ResetFlow()
         {
+#if SCENARIOBUILDER_UNITASK_SUPPORT
             Engine.ResetTask().Forget();
+#else
+            _ = Engine.ResetTask();
+#endif
         }
 
         /// <summary>
-        /// リセット実行前に行われる
+        /// リセット実行後に行われる
         /// </summary>
         /// <returns></returns>
-        internal async UniTask PreResetTask()
+#if SCENARIOBUILDER_UNITASK_SUPPORT
+        internal async UniTask PostResetTask()
+#else
+        internal async Task PostResetTask()
+#endif
         {
-            if (preResetTask == null) { return; }
-            await preResetTask.Invoke();
+            if (postResetTask == null) { return; }
+            await postResetTask.Invoke();
+        }
+
+        CancellationToken GetCancellationTokenOnDestroy()
+        {
+            return DestroyCts.Token;
+        }
+
+        void OnDestroy()
+        {
+            DestroyCts?.Cancel();
+            DestroyCts?.Dispose();
         }
 
     }
