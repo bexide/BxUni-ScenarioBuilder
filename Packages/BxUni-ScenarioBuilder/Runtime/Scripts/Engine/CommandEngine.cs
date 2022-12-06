@@ -6,8 +6,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using BxUni.ScenarioBuilderInternal;
-using UniRx;
+
+//UniRxが使用出来る場合
+#if SCENARIOBUILDER_UNIRX_SUPPORT
+    using UniRx;
+#endif
 
 //UniTaskが使用出来る場合
 #if SCENARIOBUILDER_UNITASK_SUPPORT
@@ -53,28 +58,42 @@ namespace BxUni.ScenarioBuilder
         #endregion //Property
 
         #region IObservable
+#if SCENARIOBUILDER_UNIRX_SUPPORT
 
         /// <summary>
         /// シナリオ開始時に通知
         /// </summary>
-        public IObservable<Unit> OnStart => m_onStartSubject.Where(_ => !IsResetRunning);
-        Subject<Unit> m_onStartSubject = new Subject<Unit>();
+        public IObservable<Unit> OnStart => onStartEvent.AsObservable().Where(_ => !IsResetRunning);
 
         /// <summary>
         /// シナリオ終了時に通知
         /// </summary>
-        public IObservable<Unit> OnEnd => m_onEndSubject.Where(_ => !IsResetRunning);
-        Subject<Unit> m_onEndSubject = new Subject<Unit>();
+        public IObservable<Unit> OnEnd => onEndEvent.AsObservable().Where(_ => !IsResetRunning);
 
         /// <summary>
         /// リセット通知
         /// </summary>
-        public IObservable<Unit> OnReset => m_onResetSubject;
-        Subject<Unit> m_onResetSubject = new Subject<Unit>();
+        public IObservable<Unit> OnResetCompleted => onResetCompleted.AsObservable();
 
+#endif
         #endregion
 
         #region event
+
+        /// <summary>
+        /// シナリオ実行開始時に呼ばれるイベント
+        /// </summary>
+        public UnityEvent onStartEvent { get; } = new UnityEvent();
+
+        /// <summary>
+        /// シナリオ実行終了時に呼ばれるイベント
+        /// </summary>
+        public UnityEvent onEndEvent { get; } = new UnityEvent();
+
+        /// <summary>
+        /// シナリオリセット時に呼ばれるイベント
+        /// </summary>
+        public UnityEvent onResetCompleted { get; } = new UnityEvent();
 
         /// <summary>
         /// 各Runner内のResetRunner処理が終わったあとに実行する処理を登録するためのイベント
@@ -85,7 +104,9 @@ namespace BxUni.ScenarioBuilder
         public event Func<Task> postResetTask;
 #endif
 
-#endregion
+        #endregion
+
+        #region Method
 
         /// <summary>
         /// リセットを通知します。
@@ -113,7 +134,7 @@ namespace BxUni.ScenarioBuilder
                 await postResetTask.Invoke();
             }
 
-            m_onResetSubject.OnNext(Unit.Default);
+            onResetCompleted.Invoke();
 
             IsResetRunning = false;
         }
@@ -228,7 +249,7 @@ namespace BxUni.ScenarioBuilder
             if(RunCommands == null || !RunCommands.Any()) { return; }
 
             //開始時の通知
-            m_onStartSubject.OnNext(Unit.Default);
+            onStartEvent.Invoke();
 
             using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct, Cancel.Token);
             try
@@ -256,7 +277,7 @@ namespace BxUni.ScenarioBuilder
             }
 
             //終了時の通知
-            m_onEndSubject.OnNext(Unit.Default);
+            onEndEvent.Invoke();
         }
 
 #if SCENARIOBUILDER_UNITASK_SUPPORT
@@ -385,6 +406,8 @@ namespace BxUni.ScenarioBuilder
                 throw new Exception("予期せぬエラーが発生しました。");
             }
         }
+
+        #endregion
 
     }
 }

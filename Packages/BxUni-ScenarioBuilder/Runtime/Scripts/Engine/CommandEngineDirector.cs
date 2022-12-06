@@ -2,7 +2,11 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UniRx;
+
+//UniRxが使用出来る場合
+#if SCENARIOBUILDER_UNIRX_SUPPORT
+    using UniRx;
+#endif
 
 //UniTaskが使用出来る場合
 #if SCENARIOBUILDER_UNITASK_SUPPORT
@@ -71,6 +75,7 @@ namespace BxUni.ScenarioBuilder
         #endregion
 
         #region IObservable
+#if SCENARIOBUILDER_UNIRX_SUPPORT
 
         /// <summary>開始時の通知</summary>
         public IObservable<Unit> OnStart => Engine.OnStart;
@@ -79,22 +84,23 @@ namespace BxUni.ScenarioBuilder
         public IObservable<Unit> OnEnd => Engine.OnEnd;
 
         /// <summary>リセット時の通知</summary>
-        public IObservable<Unit> OnReset => Engine.OnReset;
+        public IObservable<Unit> OnResetCompleted => Engine.OnResetCompleted;
 
+#endif
         #endregion
+
+        #region Method
 
         void Awake()
         {
-            OnStart.Subscribe(_ => onStart?.Invoke()).AddTo(this);
-            OnEnd.Subscribe(_ => onEnd?.Invoke()).AddTo(this);
-
-            Engine.postResetTask += PostResetTask;
-
-            OnReset.Subscribe(_ => 
+            Engine.onStartEvent.AddListener(() => onStart?.Invoke());
+            Engine.onEndEvent.AddListener(() => onEnd?.Invoke());
+            Engine.onResetCompleted.AddListener(() =>
             {
                 Initialize();
-                Play(this.GetCancellationTokenOnDestroy());
+                Play(GetCancellationTokenOnDestroy());
             });
+            Engine.postResetTask += PostResetTask;
 
             if (playOnAwake)
             {
@@ -187,5 +193,6 @@ namespace BxUni.ScenarioBuilder
             DestroyCts?.Dispose();
         }
 
+        #endregion
     }
 }

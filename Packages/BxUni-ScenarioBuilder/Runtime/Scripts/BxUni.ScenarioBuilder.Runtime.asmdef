@@ -14,6 +14,11 @@
     "defineConstraints": [],
     "versionDefines": [
         {
+            "name": "com.neuecc.unirx",
+            "expression": "",
+            "define": "SCENARIOBUILDER_UNIRX_SUPPORT"
+        },
+        {
             "name": "com.cysharp.unitask",
             "expression": "",
             "define": "SCENARIOBUILDER_UNITASK_SUPPORT"
