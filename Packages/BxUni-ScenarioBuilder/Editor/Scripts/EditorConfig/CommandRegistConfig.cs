@@ -19,13 +19,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         {
             if(s_allCommandGroup == null)
             {
-                s_allCommandGroup = AssetDatabase.FindAssets($"t:{nameof(CommandRegistConfig)}")
-                    .Select(AssetDatabase.GUIDToAssetPath)
-                    .Select(AssetDatabase.LoadAssetAtPath<CommandRegistConfig>)
-                    .Where(x => x != null)
-                    .Reverse()
-                    .SelectMany(x => x.m_commandDrawerGroup)
-                    .ToArray();
+                ResetCache();
             }
             return s_allCommandGroup;
         }
@@ -34,7 +28,19 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         [ScenarioBuilderEditorMenuItem("Edit/Reset Window", 89999998)]
         internal static void ResetCache()
         {
-            s_allCommandGroup = null;
+            s_allCommandGroup = AssetDatabase.FindAssets($"t:{nameof(CommandRegistConfig)}")
+                    .Select(AssetDatabase.GUIDToAssetPath)
+                    .Select(AssetDatabase.LoadAssetAtPath<CommandRegistConfig>)
+                    .Where(x => x != null)
+                    .Reverse()
+                    .SelectMany(x => x.m_commandDrawerGroup)
+                    .Where(group => group.Enabled)
+                    .ToArray();
+        }
+
+        void OnValidate()
+        {
+            ResetCache();
         }
     }
 }
