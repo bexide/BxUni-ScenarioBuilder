@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace BxUni.ScenarioBuilder.Sample.UIControl
@@ -12,6 +16,8 @@ namespace BxUni.ScenarioBuilder.Sample.UIControl
 
         [SerializeField] UI.TextBox m_textBox;
 
+        [SerializeField] RectTransform m_cursor;
+
         #endregion
 
         #region Command Methods
@@ -21,13 +27,28 @@ namespace BxUni.ScenarioBuilder.Sample.UIControl
         /// </summary>
         /// <param name="cmd">コマンドのパラメータ</param>
         [CommandRunner(typeof(SetTextBoxCommand))]
-        public void SetTextBox(SetTextBoxCommand cmd)
+        public async Task SetTextBox(SetTextBoxCommand cmd, CancellationToken ct)
         {
+            //話者名とセリフを設定
             m_textBox.SetName(cmd.Name);
             m_textBox.SetText(cmd.Text);
 
             Debug.Log(
                 $"SetTextBox Name=[{cmd.Name}] Text=[{cmd.Text}]");
+
+
+            //入力待ち
+            m_cursor.gameObject.SetActive(true);
+            
+            bool isInput = false;
+            while(!isInput)
+            {
+                ct.ThrowIfCancellationRequested();
+                isInput = Input.anyKeyDown;
+                await Task.Yield();
+            }
+
+            m_cursor.gameObject.SetActive(false);
         }
 
         #endregion

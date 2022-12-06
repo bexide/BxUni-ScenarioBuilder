@@ -13,7 +13,7 @@ namespace BxUni.ScenarioBuilder.Sample.UIControl.Editor
         public override void OnGUI(Rect rect)
         {
             string text = Cmd.Text;
-            if(text.Length >= 10)
+            if(!string.IsNullOrEmpty(text) && text.Length >= 10)
             {
                 text = $"{text.Substring(0, 10)}...";
             }

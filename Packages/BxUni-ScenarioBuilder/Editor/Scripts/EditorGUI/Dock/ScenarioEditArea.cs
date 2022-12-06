@@ -177,11 +177,14 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
             float ElementHeight(int index)
             {
-                if (index < 0 || data.Commands.Count <= index) { return 0f; }
+                var commandsProperty = so.FindProperty("m_commands");
+                if (index < 0 || commandsProperty.arraySize <= index) { return 0f; }
 
                 var command = data.Commands[index];
                 var drawer  = command.FindDrawer();
-                var property = so.FindProperty("m_commands").GetArrayElementAtIndex(index);
+
+                var property = commandsProperty.GetArrayElementAtIndex(index);
+
                 return command.Foldout
                     ? drawer.GetPreviewAreaHeight(command, property)
                     : EditorGUIProperty.ElementHeight;

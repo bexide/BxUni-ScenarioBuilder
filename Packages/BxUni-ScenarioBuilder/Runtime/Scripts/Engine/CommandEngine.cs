@@ -319,6 +319,7 @@ namespace BxUni.ScenarioBuilder
             else if (runnerData.IsReturnTypeCompair(typeof(Task)))
             {
                 var task = runnerData.Invoke<Task>(command, ct);
+                await task;
             }
 #if SCENARIOBUILDER_UNITASK_SUPPORT
             else if (runnerData.IsReturnTypeCompair(typeof(UniTask)))
