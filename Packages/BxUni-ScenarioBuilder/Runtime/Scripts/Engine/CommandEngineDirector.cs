@@ -18,6 +18,7 @@ namespace BxUni.ScenarioBuilder
     /// <summary>
     /// コマンドを実行するコンポーネント
     /// </summary>
+    [DefaultExecutionOrder(-10)]
     public sealed class CommandEngineDirector : MonoBehaviour
     {
 #pragma warning disable 0649
