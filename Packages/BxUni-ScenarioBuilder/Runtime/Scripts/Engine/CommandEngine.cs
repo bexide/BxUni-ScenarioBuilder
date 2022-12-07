@@ -99,9 +99,9 @@ namespace BxUni.ScenarioBuilder
         /// 各Runner内のResetRunner処理が終わったあとに実行する処理を登録するためのイベント
         /// </summary>
 #if SCENARIOBUILDER_UNITASK_SUPPORT
-        public event Func<UniTask> postResetTask;
+        public event Func<UniTask> onPostResetTask;
 #else
-        public event Func<Task> postResetTask;
+        public event Func<Task> onPostResetTask;
 #endif
 
         #endregion
@@ -129,9 +129,9 @@ namespace BxUni.ScenarioBuilder
             }
 
             //全てのランナーがリセットされた後に実行する処理
-            if(postResetTask != null)
+            if(onPostResetTask != null)
             {
-                await postResetTask.Invoke();
+                await onPostResetTask.Invoke();
             }
 
             onResetCompleted.Invoke();

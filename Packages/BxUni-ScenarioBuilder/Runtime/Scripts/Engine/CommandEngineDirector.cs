@@ -67,9 +67,9 @@ namespace BxUni.ScenarioBuilder
         /// <para>OnResetの通知が発行される前</para>
         /// </summary>
 #if SCENARIOBUILDER_UNITASK_SUPPORT
-        public event Func<UniTask> postResetTask;
+        public event Func<UniTask> onPostResetTask;
 #else
-        public event Func<Task> postResetTask;
+        public event Func<Task> onPostResetTask;
 #endif
 
         #endregion
@@ -100,7 +100,7 @@ namespace BxUni.ScenarioBuilder
                 Initialize();
                 Play(GetCancellationTokenOnDestroy());
             });
-            Engine.postResetTask += PostResetTask;
+            Engine.onPostResetTask += PostResetTask;
 
             if (playOnAwake)
             {
@@ -178,8 +178,8 @@ namespace BxUni.ScenarioBuilder
         internal async Task PostResetTask()
 #endif
         {
-            if (postResetTask == null) { return; }
-            await postResetTask.Invoke();
+            if (onPostResetTask == null) { return; }
+            await onPostResetTask.Invoke();
         }
 
         CancellationToken GetCancellationTokenOnDestroy()
