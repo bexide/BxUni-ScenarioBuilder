@@ -15,6 +15,7 @@ MonoBehaviour:
   m_commands:
   - rid: 6616396046723448834
   - rid: 6616396067486040066
+  - rid: 6616396070100402176
   references:
     version: 2
     RefIds:
@@ -29,3 +30,7 @@ MonoBehaviour:
       data:
         m_id: Prefab_1
         m_isActive: 1
+    - rid: 6616396070100402176
+      type: {class: BackgroundChangeCommand, ns: BxUni.ScenarioBuilder.Sample.Demo, asm: BxUni.ScenarioBuilder.Sample.Demo.Runtime}
+      data:
+        m_backgroundSprite: {fileID: 21300000, guid: 1e2ada71ac642ac4b9c0b9e201795e3a, type: 3}
