@@ -30,6 +30,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             {
                 foreach(var group in allCommandGroup)
                 {
+                    if (!group.Enabled) { continue; }
                     group.DrawLayout();
                 }
                 m_scrollPos = scroll.scrollPosition;

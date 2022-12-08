@@ -34,7 +34,6 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                     .Where(x => x != null)
                     .Reverse()
                     .SelectMany(x => x.m_commandDrawerGroup)
-                    .Where(group => group.Enabled)
                     .ToArray();
         }
 
