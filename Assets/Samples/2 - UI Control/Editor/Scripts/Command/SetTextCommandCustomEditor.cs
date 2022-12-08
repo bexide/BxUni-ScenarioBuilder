@@ -5,7 +5,7 @@ using BxUni.ScenarioBuilder.Editor;
 namespace BxUni.ScenarioBuilder.Sample.UIControl.Editor
 {
     [CustomCommandEditor(typeof(SetTextBoxCommand))]
-    public class SetTextCommandCustomEditor : CustomCommandEditor
+    internal class SetTextCommandCustomEditor : CustomCommandEditor
     {
         SetTextBoxCommand Cmd
             => target as SetTextBoxCommand;

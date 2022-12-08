@@ -1,43 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
-namespace BxUni.ScenarioBuilder.Editor
+namespace BxUni.ScenarioBuilder.Sample.Demo
 {
-    [CustomPropertyDrawer(typeof(LabelCommandAttribute))]
-    internal sealed class LabelCommandAttributeDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(PrefabIDSelectorAttribute))]
+    public class PrefabIDSelectorPropertyDrawer : PropertyDrawer
     {
 
         static readonly string[] k_defaultList = new string[]
         {
-            "Selected...",
+            "Selected..."
         };
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            if (property.propertyType != SerializedPropertyType.String)
+            if(property.propertyType != SerializedPropertyType.String) 
             {
                 EditorGUI.PropertyField(position, property, label);
                 return;
             }
 
             var so = property.serializedObject;
-            if(!(so.targetObject is ScenarioData data))
+            if(!(so.targetObject is ScenarioData scenarioData))
             {
                 EditorGUI.PropertyField(position, property, label);
                 return;
             }
 
-            string[] list = k_defaultList.Concat(
-                    data.Commands
-                    .Where(command => command is LabelCommand)
-                    .Select(command => (command as LabelCommand).Name)
-                    .Where(name => !string.IsNullOrEmpty(name))
-                ).ToArray();
-
+            string[] list = k_defaultList
+                .Concat(
+                    scenarioData.Commands
+                        .Where(cmd => cmd is PrefabSpawnSetupCommand)
+                        .SelectMany(cmd => (cmd as PrefabSpawnSetupCommand).Setups)
+                        .Select(setup => setup.ID)
+                        .Where(id => !string.IsNullOrEmpty(id))
+                )
+                .ToArray();
             if (!list.Any())
             {
-                EditorGUI.LabelField(position, label, new GUIContent("Labelを追加してください"));
+                EditorGUI.PropertyField(position, property, label);
                 return;
             }
 
