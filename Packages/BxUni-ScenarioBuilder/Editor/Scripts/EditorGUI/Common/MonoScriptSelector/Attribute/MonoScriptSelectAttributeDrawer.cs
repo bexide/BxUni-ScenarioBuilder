@@ -1,6 +1,3 @@
-//BeXide 2022-11-14
-//by MurakamiKazuki
-
 using UnityEngine;
 using UnityEditor;
 
