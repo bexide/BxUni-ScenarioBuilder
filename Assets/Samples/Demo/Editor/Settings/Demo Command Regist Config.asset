@@ -41,3 +41,11 @@ MonoBehaviour:
       m_icon: {fileID: 0}
       m_script: {fileID: 11500000, guid: ebcce34adbcdb454cad925db5d30835e, type: 3}
       m_tooltip: "\u30C6\u30AD\u30B9\u30C8\u3092\u8868\u793A\u3057\u307E\u3059\u3002"
+  - m_groupName: Demo_Wait Control
+    m_enabled: 1
+    m_color: {r: 1, g: 0.9798089, b: 0, a: 0}
+    m_commandDrawers:
+    - m_viewName: "\u30AF\u30EA\u30C3\u30AF\u5F85\u3061"
+      m_icon: {fileID: 0}
+      m_script: {fileID: 11500000, guid: 81a4cf91312a9134d89f91a3776926b1, type: 3}
+      m_tooltip: "\u30AF\u30EA\u30C3\u30AF\u5F85\u3061\u3057\u307E\u3059\u3002"

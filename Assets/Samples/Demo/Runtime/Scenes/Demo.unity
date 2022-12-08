@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 515941449}
   - component: {fileID: 515941450}
   - component: {fileID: 515941451}
+  - component: {fileID: 515941452}
   m_Layer: 0
   m_Name: Runner
   m_TagString: Untagged
@@ -349,6 +350,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 1574044250}
+--- !u!114 &515941452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515941446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d6ce795af1d634aa9ab0ae3e982d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_button: {fileID: 2094917823}
 --- !u!1 &881124320
 GameObject:
   m_ObjectHideFlags: 0

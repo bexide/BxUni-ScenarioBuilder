@@ -15,7 +15,11 @@ MonoBehaviour:
   m_commands:
   - rid: 6616396046723448834
   - rid: 6616396067486040066
+  - rid: 6616396070100402178
+  - rid: 6616396070100402181
   - rid: 6616396070100402176
+  - rid: 6616396070100402180
+  - rid: 6616396070100402179
   references:
     version: 2
     RefIds:
@@ -34,3 +38,15 @@ MonoBehaviour:
       type: {class: BackgroundChangeCommand, ns: BxUni.ScenarioBuilder.Sample.Demo, asm: BxUni.ScenarioBuilder.Sample.Demo.Runtime}
       data:
         m_backgroundSprite: {fileID: 21300000, guid: 1e2ada71ac642ac4b9c0b9e201795e3a, type: 3}
+    - rid: 6616396070100402178
+      type: {class: SetTextCommand, ns: BxUni.ScenarioBuilder.Sample.Demo, asm: BxUni.ScenarioBuilder.Sample.Demo.Runtime}
+      data:
+        m_text: "\u80CC\u666F\u3092\u5909\u66F4\u3057\u307E\u3059\u3002"
+    - rid: 6616396070100402179
+      type: {class: WaitClickCommand, ns: BxUni.ScenarioBuilder.Sample.Demo, asm: BxUni.ScenarioBuilder.Sample.Demo.Runtime}
+    - rid: 6616396070100402180
+      type: {class: SetTextCommand, ns: BxUni.ScenarioBuilder.Sample.Demo, asm: BxUni.ScenarioBuilder.Sample.Demo.Runtime}
+      data:
+        m_text: "\u80CC\u666F\u304C\u5909\u308F\u308A\u307E\u3057\u305F\u3002"
+    - rid: 6616396070100402181
+      type: {class: WaitClickCommand, ns: BxUni.ScenarioBuilder.Sample.Demo, asm: BxUni.ScenarioBuilder.Sample.Demo.Runtime}
