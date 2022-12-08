@@ -153,9 +153,17 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             {
                 foreach (var t in m_customCommandEditorTypes)
                 {
-                    var instance = CreateCustomCommandEditorInstance(t, command);
-                    t.GetMethod(CustomCommandEditor.OnGUIMethodName)
-                     .Invoke(instance, new object[] { rect });
+                    try
+                    {
+                        var instance = CreateCustomCommandEditorInstance(t, command);
+                        t.GetMethod(CustomCommandEditor.OnGUIMethodName)
+                         .Invoke(instance, new object[] { rect });
+                    }
+                    catch(Exception ex)
+                    {
+                        Debug.LogException(ex);
+                        EditorGUI.LabelField(rect, $"[{command.FindDrawer().m_viewName}]");
+                    }
                 }
             }
             //されていない場合
@@ -175,9 +183,17 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             {
                 foreach (var t in m_customCommandEditorTypes)
                 {
-                    var instance = CreateCustomCommandEditorInstance(t, command);
-                    hasPreviewArea |= (bool)t.GetMethod(CustomCommandEditor.HasPreviewAreaMethodName)
-                     .Invoke(instance, new object[] { });
+                    try
+                    {
+                        var instance = CreateCustomCommandEditorInstance(t, command);
+                        hasPreviewArea |= (bool)t.GetMethod(CustomCommandEditor.HasPreviewAreaMethodName)
+                         .Invoke(instance, new object[] { });
+                    }
+                    catch(Exception ex)
+                    {
+                        Debug.LogException(ex);
+                        hasPreviewArea = false;
+                    }
                 }
             }
 
@@ -197,9 +213,18 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             {
                 foreach (var t in m_customCommandEditorTypes)
                 {
-                    var instance = CreateCustomCommandEditorInstance(t, command);
-                    t.GetMethod(CustomCommandEditor.OpPreviewAreaGUIMethodName)
-                     .Invoke(instance, new object[] { rect, property });
+                    try
+                    {
+                        var instance = CreateCustomCommandEditorInstance(t, command);
+                        t.GetMethod(CustomCommandEditor.OpPreviewAreaGUIMethodName)
+                         .Invoke(instance, new object[] { rect, property });
+                    }
+                    catch(Exception ex)
+                    {
+                        Debug.LogException(ex);
+                        HandleDrawUtility.DrawRectBox(rect, Color.red);
+                        EditorGUI.LabelField(rect, $"Previewが実行できません。Consoleからエラー内容をご確認ください");
+                    }
                 }
             }
         }
@@ -214,11 +239,19 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 float height = -1f;
                 foreach (var t in m_customCommandEditorTypes)
                 {
-                    var instance = CreateCustomCommandEditorInstance(t, command);
-                    float h = (float)t.GetMethod(CustomCommandEditor.GetPreviewAreaHeightMethodName)
-                     .Invoke(instance, new object[] { property });
+                    try
+                    {
+                        var instance = CreateCustomCommandEditorInstance(t, command);
+                        float h = (float)t.GetMethod(CustomCommandEditor.GetPreviewAreaHeightMethodName)
+                         .Invoke(instance, new object[] { property });
 
-                    height = Math.Max(height, h);
+                        height = Math.Max(height, h);
+                    }
+                    catch(Exception ex)
+                    {
+                        Debug.LogException(ex);
+                        height = -1;
+                    }
                 }
                 return height > 0.0f ? height : 128.0f; 
             }
