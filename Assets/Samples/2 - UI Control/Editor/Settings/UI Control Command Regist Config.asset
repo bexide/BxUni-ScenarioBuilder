@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: UI Control Command Regist Config
   m_EditorClassIdentifier: 
   m_commandDrawerGroup:
-  - m_groupName: "\u30C6\u30AD\u30B9\u30C8\u30DC\u30C3\u30AF\u30B9"
+  - m_groupName: UI Control
+    m_enabled: 1
     m_color: {r: 1, g: 0.6273585, b: 0.6273585, a: 0}
     m_commandDrawers:
     - m_viewName: "\u30C6\u30AD\u30B9\u30C8\u30DC\u30C3\u30AF\u30B9\u8A2D\u5B9A"
