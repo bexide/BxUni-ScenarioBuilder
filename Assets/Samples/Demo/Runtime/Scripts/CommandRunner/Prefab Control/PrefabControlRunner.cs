@@ -36,6 +36,18 @@ namespace BxUni.ScenarioBuilder.Sample.Demo
             }
         }
 
+        /// <summary>
+        /// ActiveSwitchCommandが流れてきた時に処理を行う
+        /// </summary>
+        /// <param name="cmd">コマンドのパラメータ</param>
+        [CommandRunner(typeof(ActiveSwitchCommand))]
+        public void ActiveSwitch(ActiveSwitchCommand cmd)
+        {
+            if(!InstanceTable.TryGetValue(cmd.ID, out var go)) { return; }
+
+            go.SetActive(cmd.Active);
+        }
+
         #endregion
 
         public override void ResetRunner()

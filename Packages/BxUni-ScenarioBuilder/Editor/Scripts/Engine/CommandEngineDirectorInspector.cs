@@ -49,45 +49,45 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         void DrawLayoutChildRunners()
         {
-            if(s_foldout.DrawLayout("CommandRunners", Color.green))
+            if(!s_foldout.DrawLayout("CommandRunners", Color.green)) { return; }
+
+            var runners = Target.GetComponentsInChildren<BaseCommandRunner>()
+                .SelectMany(runner =>
+                {
+                    return runner.GetType().GetMethods()
+                        .Where(AttributeUtility.HasMethodAttribute<CommandRunnerAttribute>)
+                        .Select(method =>
+                        {
+                            var attr = AttributeUtility.GetMethodAttribute<CommandRunnerAttribute>(method);
+                            return (type: attr.RunCommandType, runner: runner);
+                        });
+                });
+
+            var width = GUILayout.Width(EditorGUIUtility.currentViewWidth / 3f);
+
+            using (new EditorGUILayout.HorizontalScope())
             {
-                var runners = Target.GetComponentsInChildren<BaseCommandRunner>()
-                    .SelectMany(runner => 
-                    {
-                        return runner.GetType().GetMethods()
-                            .Where(AttributeUtility.HasMethodAttribute<CommandRunnerAttribute>)
-                            .Select(method =>
-                            {
-                                var attr = AttributeUtility.GetMethodAttribute<CommandRunnerAttribute>(method);
-                                return (type: attr.RunCommandType, runner: runner);
-                            });
-                    });
+                EditorGUILayout.LabelField("[Runner Object]", width);
+                EditorGUILayout.LabelField("[Runner Component]", width);
+                EditorGUILayout.LabelField("[Command Type]", width);
+            }
 
-                var width = GUILayout.Width(EditorGUIUtility.currentViewWidth / 3f);
+            var rect = GUILayoutUtility.GetLastRect();
+            rect.y = rect.yMax;
+            rect.height = 1f;
+            HandleDrawUtility.DrawRectBox(rect, Color.green);
 
-                using (new EditorGUILayout.HorizontalScope())
+            foreach (var (type, runner) in runners)
+            {
+                using var _ = new EditorGUILayout.HorizontalScope();
+
+                if (GUILayout.Button(runner.name, EditorStyles.linkLabel, width))
                 {
-                    EditorGUILayout.LabelField("[Runner Object]", width);
-                    EditorGUILayout.LabelField("[Runner Component]", width);
-                    EditorGUILayout.LabelField("[Command Type]", width);
+                    Selection.activeObject = runner;
                 }
-                
-                var rect = GUILayoutUtility.GetLastRect();
-                rect.y      = rect.yMax;
-                rect.height = 1f;
-                HandleDrawUtility.DrawRectBox(rect, Color.green);
-
-                foreach (var (type, runner) in runners)
-                {
-                    using (new EditorGUILayout.HorizontalScope())
-                    {
-                        EditorGUILayout.LabelField(runner.name, width);
-                        EditorGUILayout.LabelField(runner.GetType().Name, width);
-                        EditorGUILayout.LabelField(type.Name, width);
-                    }
-                }
+                EditorGUILayout.LabelField(runner.GetType().Name, width);
+                EditorGUILayout.LabelField(type.Name, width);
             }
         }
-
     }
 }
