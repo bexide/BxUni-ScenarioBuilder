@@ -19,7 +19,10 @@ namespace BxUni.ScenarioBuilder.Sample.Demo
         
             [Header("生成するPrefab")]
             [SerializeField] GameObject m_spawnPrefab;
-        
+
+            [Header("初期時のアクティブ")]
+            [SerializeField] bool m_isActive = true;
+
             /// <summary>
             /// 固有ID
             /// </summary>
@@ -29,6 +32,11 @@ namespace BxUni.ScenarioBuilder.Sample.Demo
             /// 生成するPrefab
             /// </summary>
             public GameObject SpawnPrefab => m_spawnPrefab;
+
+            /// <summary>
+            /// 初期時のアクティブ
+            /// </summary>
+            public bool IsActive => m_isActive;
         }
         
         #endregion

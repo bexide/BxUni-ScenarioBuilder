@@ -24,13 +24,14 @@ namespace BxUni.ScenarioBuilder.Sample.Demo
         {
             foreach (var setup in cmd.Setups)
             {
-                if (!InstanceTable.ContainsKey(setup.ID))
+                if (InstanceTable.ContainsKey(setup.ID))
                 {
                     continue;
                 }
 
                 var go = Instantiate(setup.SpawnPrefab);
                 go.name = setup.ID;
+                go.SetActive(setup.IsActive);
 
                 InstanceTable.TryAdd(setup.ID, go);
             }

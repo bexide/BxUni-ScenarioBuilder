@@ -12,6 +12,7 @@ namespace BxUni.ScenarioBuilder.Sample.Demo
         #region Property
 
         [SerializeField] Button m_button;
+        [SerializeField] SelectArea m_selectArea;
 
         #endregion
 
@@ -45,6 +46,23 @@ namespace BxUni.ScenarioBuilder.Sample.Demo
             finally
             {
                 m_button.onClick.RemoveListener(Click);
+            }
+        }
+
+        [CommandRunner(typeof(SelectButtonCommand))]
+        public async Task<string> SelectButtonTask(SelectButtonCommand cmd, CancellationToken ct)
+        {
+            try
+            {
+                m_selectArea.SetActive(true);
+
+                int selected = await m_selectArea.SelectTask(cmd.Labels, ct);
+
+                return cmd.Labels[selected];
+            }
+            finally
+            {
+                m_selectArea.SetActive(false);
             }
         }
 
