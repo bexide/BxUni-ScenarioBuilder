@@ -1,6 +1,7 @@
 using System.Reflection;
+using BxUni.ScenarioBuilder;
 
-namespace BxUni.ScenarioBuilder
+namespace BxUni.ScenarioBuilderInternal
 {
     internal class RunnerData
     {

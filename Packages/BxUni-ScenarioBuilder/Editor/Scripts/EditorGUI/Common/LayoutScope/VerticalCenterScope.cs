@@ -1,12 +1,13 @@
+using System.Linq;
 using UnityEngine;
 
 namespace BxUni.ScenarioBuilder.EditorInternal
 {
     internal class VerticalCenterScope : GUI.Scope
     {
-        internal VerticalCenterScope()
+        internal VerticalCenterScope(params GUILayoutOption[] options)
         {
-            GUILayout.BeginVertical(GUILayout.ExpandHeight(true));
+            GUILayout.BeginVertical(options.Append(GUILayout.ExpandHeight(true)).ToArray());
             GUILayout.FlexibleSpace();
         }
 

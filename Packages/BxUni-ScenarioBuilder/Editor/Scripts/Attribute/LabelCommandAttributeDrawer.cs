@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
-namespace BxUni.ScenarioBuilder.Editor
+namespace BxUni.ScenarioBuilder.EditorInternal
 {
     [CustomPropertyDrawer(typeof(LabelCommandAttribute))]
     internal sealed class LabelCommandAttributeDrawer : PropertyDrawer

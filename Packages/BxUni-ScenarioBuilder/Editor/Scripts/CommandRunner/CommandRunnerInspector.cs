@@ -7,7 +7,7 @@ using BxUni.ScenarioBuilder.Editor;
 namespace BxUni.ScenarioBuilder.EditorInternal
 {
     [CustomEditor(typeof(BaseCommandRunner), editorForChildClasses: true)]
-    public class CommandRunnerInspector : UnityEditor.Editor
+    internal class CommandRunnerInspector : UnityEditor.Editor
     {
         BaseCommandRunner Target => target as BaseCommandRunner;
 

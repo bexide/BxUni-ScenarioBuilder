@@ -1,12 +1,13 @@
+using System.Linq;
 using UnityEngine;
 
 namespace BxUni.ScenarioBuilder.EditorInternal
 {
     internal class HorizontalCenterScope : GUI.Scope
     {
-        internal HorizontalCenterScope()
+        internal HorizontalCenterScope(params GUILayoutOption[] options)
         {
-            GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
+            GUILayout.BeginHorizontal(options.Append(GUILayout.ExpandWidth(true)).ToArray());
             GUILayout.FlexibleSpace();
         }
 

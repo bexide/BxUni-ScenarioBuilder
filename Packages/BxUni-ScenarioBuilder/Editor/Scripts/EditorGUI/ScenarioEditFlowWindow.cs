@@ -26,6 +26,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         #region Dock
 
+        internal InitializeArea InitializeArea { get; } = new InitializeArea();
         internal ScenarioFileInfoArea  FileInfoArea { get; } = new ScenarioFileInfoArea();
         internal ScenarioEditArea  FlowEditArea { get; } = new ScenarioEditArea();
         internal WindowHeaderArea    HeaderArea   { get; } = new WindowHeaderArea();
@@ -67,17 +68,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
             if(CurrentEditData == null)
             {
-                using var _  = new VerticalCenterScope();
-                using var __ = new HorizontalCenterScope();
-
-                if (GUILayout.Button("新規作成", GUILayout.Width(200)))
-                {
-                    ScenarioBuilderEditUtility.CreateAsset();
-                }
-                if (GUILayout.Button("開く", GUILayout.Width(200)))
-                {
-                    ScenarioBuilderEditUtility.OpenAsset();
-                }
+                InitializeArea.DrawLayout();
             }
             else
             {

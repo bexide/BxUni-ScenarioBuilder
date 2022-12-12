@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using BxUni.ScenarioBuilder.EditorInternal;
 
-namespace BxUni.ScenarioBuilder.Editor
+namespace BxUni.ScenarioBuilder.EditorInternal
 {
     internal static class HandleDrawUtility
     {

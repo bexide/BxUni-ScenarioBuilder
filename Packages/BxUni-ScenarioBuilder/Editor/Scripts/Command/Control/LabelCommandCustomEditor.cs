@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEditor;
+using BxUni.ScenarioBuilder.Editor;
 
-namespace BxUni.ScenarioBuilder.Editor 
+namespace BxUni.ScenarioBuilder.EditorInternal
 {
     [CustomCommandEditor(typeof(LabelCommand))]
     internal class LabelCommandCustomEditor : CustomCommandEditor

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
-
-namespace BxUni.ScenarioBuilder.Editor
+using BxUni.ScenarioBuilder.Editor;
+namespace BxUni.ScenarioBuilder.EditorInternal
 {
     [CustomCommandEditor(typeof(JumpCommand))]
     internal class JumpCommandCustomEditor : CustomCommandEditor
