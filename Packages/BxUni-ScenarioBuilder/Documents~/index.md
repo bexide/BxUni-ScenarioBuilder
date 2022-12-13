@@ -101,15 +101,16 @@ public class LogCommandRunner : BaseCommandRunner //BaseCommandRunnerを継承�
 
 
 4. CommandRegistConfig.assetに情報を追加していきます。
-* +ボタンを押してグループを追加します。
- * 「Group Name」に任意のグループ名を入力します。
- * 「Enabled」にチェックを入れます。
- * 「Color」に任意の色を指定します。
- * 「Command Drawers」のリストで＋ボタンを押します。
-  * 「View Name」にコマンドを表す名前を入力します。
-  * （対応しなくても可）「Icon」に任意のTextureを参照させると、編集ウィンドウ内のアイコンが変わります。
-  * 「Script」でコマンドのMonoScriptを指定します。（今回だとLogCommand.cs）
-  * 「Tooltip」にコマンドの説明を入力します。
+
+- +ボタンを押してグループを追加します。
+ - 「Group Name」に任意のグループ名を入力します。
+ - 「Enabled」にチェックを入れます。
+ - 「Color」に任意の色を指定します。
+ - 「Command Drawers」のリストで＋ボタンを押します。
+  - 「View Name」にコマンドを表す名前を入力します。
+  - （対応しなくても可）「Icon」に任意のTextureを参照させると、編集ウィンドウ内のアイコンが変わります。
+  - 「Script」でコマンドのMonoScriptを指定します。（今回だとLogCommand.cs）
+  - 「Tooltip」にコマンドの説明を入力します。
 ![](./Images/BxUni-ScenarioBuilder_007.jpg)
 
 以上の対応で完了です。
