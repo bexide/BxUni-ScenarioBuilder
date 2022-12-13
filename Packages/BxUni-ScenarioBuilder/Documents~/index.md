@@ -116,7 +116,7 @@ public class LogCommandRunner : BaseCommandRunner //BaseCommandRunnerを継承�
 
 ![](./Images/BxUni-ScenarioBuilder_007.jpg)
 
-以上の対応で完了です。
+以上の対応で完了です。  
 ![](./Images/BxUni-ScenarioBuilder_008.jpg)
 
 ### 特殊なコマンドについて
@@ -148,14 +148,13 @@ public async UniTask WaitDelayTask(ExampleTaskCommand cmd, CancellationToken ct 
 
 ```
 
-2. ジャンプコマンド
-
-パッケージを入れた時から使用出来る「ラベルコマンド」と「ジャンプコマンド」があります。
+2. ジャンプコマンド  
+パッケージを入れた時から使用出来る「ラベルコマンド」と「ジャンプコマンド」があります。  
 例えば以下の画像のように設定すると1個目のジャンプコマンドで3個目のラベルコマンドにジャンプするので
-2個目のLogCommandは無視されます。
+2個目のLogCommandは無視されます。  
 ![](./Images/BxUni-ScenarioBuilder_009.jpg)
 
-この仕組みを利用し、自作のジャンプコマンドを用意することが出来ます。
+この仕組みを利用し、自作のジャンプコマンドを用意することが出来ます。  
 ここではコマンド側で指定した複数のラベルからランダムで1つ選択し、そこへジャンプするサンプルを書いてみます。
 
 ```csharp
@@ -217,10 +216,10 @@ public class RandomJumpCommandRunner : BaseCommandRunner
 
 ## その他
 
-![コマンドのEditor拡張について](./Editor%20Extensions.md)
+[コマンドのEditor拡張について](./Editor%20Extensions.md)
 
-![UniRxをプロジェクトに含める](./External%20UniRx.md)
+[UniRxをプロジェクトに含める](./External%20UniRx.md)
 
-![UniTaskをプロジェクトに含める](./External%20UniTask.md)
+[UniTaskをプロジェクトに含める](./External%20UniTask.md)
 
-![コードリファレンス](./Reference/html/index.html)
+[コードリファレンス](./Reference/html/index.html)
