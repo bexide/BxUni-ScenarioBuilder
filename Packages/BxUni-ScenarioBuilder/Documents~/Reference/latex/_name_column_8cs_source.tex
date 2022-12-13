@@ -1,0 +1,23 @@
+\hypertarget{_name_column_8cs_source}{}\doxysection{Name\+Column.\+cs}
+\label{_name_column_8cs_source}\index{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Dock/TreeView/Column/NameColumn.cs@{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Dock/TreeView/Column/NameColumn.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00001}00001 \textcolor{keyword}{using }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00002}00002 \textcolor{keyword}{using }UnityEditor.IMGUI.Controls;}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00004}00004 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_bx_uni_1_1_scenario_builder_1_1_editor_internal}{BxUni.ScenarioBuilder.EditorInternal}}}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00006}00006     \textcolor{keyword}{internal} \textcolor{keyword}{class }NameColumn : MultiColumnHeaderState.Column}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00007}00007         , IHasColumnIndex}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00008}00008     \{}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00009}00009         ColumnIndex IHasColumnIndex.Index => ColumnIndex.Name;}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00010}00010         }
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00011}00011         \textcolor{keyword}{internal} NameColumn()}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00012}00012         \{}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00013}00013             width = 150;}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00014}00014             headerContent = \textcolor{keyword}{new} GUIContent(\textcolor{stringliteral}{"{}Name"{}});}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00015}00015         \}}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00016}00016     \}}
+\DoxyCodeLine{\Hypertarget{_name_column_8cs_source_l00017}00017 \}}
+
+\end{DoxyCode}

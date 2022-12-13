@@ -81,10 +81,17 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
             var paths = AssetDatabase.FindAssets($"t:{nameof(ScenarioData)}")
                 .Select(AssetDatabase.GUIDToAssetPath);
-            int id = 1;
-            foreach(string path in paths)
+            if (paths.Any())
             {
-                root.AddChild(new ScenarioTableItem(id++, path));
+                int id = 1;
+                foreach (string path in paths)
+                {
+                    root.AddChild(new ScenarioTableItem(id++, path));
+                }
+            }
+            else
+            {
+                root.children = new List<TreeViewItem>();
             }
 
             return root;

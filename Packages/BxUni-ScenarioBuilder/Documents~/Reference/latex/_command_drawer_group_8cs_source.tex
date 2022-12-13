@@ -1,0 +1,50 @@
+\hypertarget{_command_drawer_group_8cs_source}{}\doxysection{Command\+Drawer\+Group.\+cs}
+\label{_command_drawer_group_8cs_source}\index{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/Command/CommandDrawerGroup.cs@{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/Command/CommandDrawerGroup.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00001}00001 \textcolor{keyword}{using }System;}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00002}00002 \textcolor{keyword}{using }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00004}00004 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_bx_uni_1_1_scenario_builder_1_1_editor_internal}{BxUni.ScenarioBuilder.EditorInternal}}}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00006}00006     [Serializable]}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00007}00007     \textcolor{keyword}{internal} \textcolor{keyword}{class }CommandDrawerGroup}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00008}00008     \{}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00009}00009 \textcolor{preprocessor}{\#pragma warning disable 0649}}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00010}00010         [Tooltip(\textcolor{stringliteral}{"{}グループ名"{}})]}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00011}00011         [SerializeField] \textcolor{keywordtype}{string} m\_groupName;}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00013}00013         [Tooltip(\textcolor{stringliteral}{"{}Editウィンドウ上で表示するかどうか"{}})]}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00014}00014         [SerializeField] \textcolor{keywordtype}{bool} m\_enabled = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00015}00015         }
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00016}00016         [Tooltip(\textcolor{stringliteral}{"{}グループを表す色"{}}), ColorUsage(showAlpha:\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00017}00017         [SerializeField] Color m\_color = Color.white;}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00018}00018         }
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00019}00019         [Tooltip(\textcolor{stringliteral}{"{}グループに所属するコマンド一覧"{}})]}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00020}00020         [SerializeField] CommandDrawer[] m\_commandDrawers;}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00021}00021 \textcolor{preprocessor}{\#pragma warning restore 0649}}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00023}00023         Foldout m\_foldout = \textcolor{keyword}{new} Foldout();}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00025}00025         \textcolor{keyword}{internal} \textcolor{keywordtype}{bool} Enabled => m\_enabled;}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00027}00027         \textcolor{keyword}{internal} CommandDrawer[] CommandDrawers => m\_commandDrawers;}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00029}00029         \textcolor{keyword}{internal} Color Color => m\_color.SetAlpha(1f);}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00031}00031         \textcolor{keyword}{internal} \textcolor{keywordtype}{void} DrawLayout()}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00032}00032         \{}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00033}00033             \textcolor{keywordflow}{if} (m\_foldout.DrawLayout(m\_groupName, Color))}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00034}00034             \{}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00035}00035                 \textcolor{keywordflow}{foreach}(var drawer \textcolor{keywordflow}{in} m\_commandDrawers)}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00036}00036                 \{}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00037}00037                     drawer.DrawLayout();}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00038}00038                     drawer.OnDragEnter();}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00039}00039                 \}}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00040}00040             \}}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00041}00041         \}}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00043}00043     \}}
+\DoxyCodeLine{\Hypertarget{_command_drawer_group_8cs_source_l00044}00044 \}}
+
+\end{DoxyCode}

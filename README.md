@@ -3,20 +3,11 @@
 ## 概要
 シナリオファイルにコマンドを並べることで順番に処理を行う機能を提供します。
 
-## 依存関係
-・UniRx  
-・UniTask
-
-## 著者
-BeXide Inc.
-村上 和樹
-
 ## Unityバージョン
 Unity2021.3以降
 
-## インストール
+## 使用方法
+[BxUni Scenario Builder](Packages/BxUni-ScenarioBuilder/Docments~/index.md)
 
-## 使い方
-・各プロジェクトでPackageManagerからダウンロードをします。 
-・PGはプロジェクトごとにパラメータ群となるコマンドと実行するランナーを作成・登録をしていきます。 
-・GDはシナリオファイルを作成し、用意されたコマンドを並べていきます。 
+## ライセンス
+[LICENSE](Packages/BxUni-ScenarioBuilder/LICENSE.md)

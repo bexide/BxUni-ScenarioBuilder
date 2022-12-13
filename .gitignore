@@ -16,6 +16,7 @@
 
 # Unity2020以降でできるユーザー設定フォルダ
 /UserSettings/
+/ProjectSettings/SceneTemplateSettings.json
 
 #VS,Mono,IL2CPPのファイル
 /*.sln
@@ -60,7 +61,6 @@
 # doxygen
 /html/
 /latex/
-/Packages/BxUni-ScenarioBuilder/Docments~/Doxygen/
 
 #作業ファイル
 /EditorData/

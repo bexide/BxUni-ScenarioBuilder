@@ -1,0 +1,36 @@
+\hypertarget{_command_help_area_8cs_source}{}\doxysection{Command\+Help\+Area.\+cs}
+\label{_command_help_area_8cs_source}\index{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Dock/CommandHelpArea.cs@{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Dock/CommandHelpArea.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00001}00001 \textcolor{keyword}{using }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00002}00002 \textcolor{keyword}{using }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00004}00004 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_bx_uni_1_1_scenario_builder_1_1_editor_internal}{BxUni.ScenarioBuilder.EditorInternal}}}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00009}00009     \textcolor{keyword}{internal} \textcolor{keyword}{class }CommandHelpArea}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00010}00010     \{}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00011}00011 \textcolor{preprocessor}{        \#region const}}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00013}00013         \textcolor{keyword}{const} \textcolor{keywordtype}{float} k\_iconSize = 20f;}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00015}00015 \textcolor{preprocessor}{        \#endregion}}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00017}00017         \textcolor{keyword}{internal} \textcolor{keywordtype}{void} DrawLayout()}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00018}00018         \{}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00019}00019             \textcolor{keyword}{using }var \_ = \textcolor{keyword}{new} EditorGUILayout.HorizontalScope(GUI.skin.box);}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00021}00021             DrawIconLayout();}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00022}00022             GUILayout.Label(CommandDrawer.TooltipMessage);}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00023}00023         \}}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00025}00025         \textcolor{keywordtype}{void} DrawIconLayout()}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00026}00026         \{}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00027}00027             \textcolor{keyword}{using }var \_ = \textcolor{keyword}{new} ContentColorScope(Color.green);}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00028}00028             GUILayout.Label(EditorGUIIcons.HelpIconTex,}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00029}00029                 EditorGUIIcons.IconSizeLayoutOption(k\_iconSize));}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00030}00030         \}}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00032}00032     \}}
+\DoxyCodeLine{\Hypertarget{_command_help_area_8cs_source_l00033}00033 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,47 @@
+\hypertarget{_sub_menu_item_8cs_source}{}\doxysection{Sub\+Menu\+Item.\+cs}
+\label{_sub_menu_item_8cs_source}\index{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Common/SubMenu/SubMenuItem.cs@{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Common/SubMenu/SubMenuItem.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00001}00001 \textcolor{keyword}{using }System;}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00002}00002 \textcolor{keyword}{using }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00004}00004 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_bx_uni_1_1_scenario_builder_1_1_editor_internal}{BxUni.ScenarioBuilder.EditorInternal}}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00006}00006     \textcolor{keyword}{internal} \textcolor{keyword}{class }SubMenuItem}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00007}00007     \{}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00008}00008 \textcolor{preprocessor}{        \#region property}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00010}00010         \textcolor{keyword}{internal} \textcolor{keywordtype}{string} MenuName => Content.text;}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00012}00012         \textcolor{keyword}{internal} GUIContent Content \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00014}00014         \textcolor{keyword}{internal} \textcolor{keywordtype}{int} Priority \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00016}00016         Action Callback \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00018}00018 \textcolor{preprocessor}{        \#endregion}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00020}00020         \textcolor{keyword}{internal} SubMenuItem(\textcolor{keywordtype}{string} name, Action callback, \textcolor{keywordtype}{int} priority = 0)}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00021}00021         \{}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00022}00022             Callback = callback;}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00023}00023             Priority = priority;}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00024}00024             Content  = \textcolor{keyword}{new} GUIContent(name);}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00025}00025         \}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00027}00027         \textcolor{keyword}{internal} \textcolor{keywordtype}{bool} IsSeparator()}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00028}00028         \{}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00029}00029             \textcolor{keywordflow}{return} \textcolor{keywordtype}{string}.IsNullOrEmpty(MenuName);}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00030}00030         \}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00032}00032         \textcolor{keyword}{internal} \textcolor{keywordtype}{void} Invoke()}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00033}00033         \{}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00034}00034             \textcolor{keywordflow}{if} (IsSeparator()) \{ \textcolor{keywordflow}{return}; \}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00036}00036             Debug.Assert(Callback != \textcolor{keyword}{null}, \textcolor{stringliteral}{"{}Callback not configured..."{}});}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00037}00037             Callback?.Invoke();}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00038}00038         \}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00040}00040     \}}
+\DoxyCodeLine{\Hypertarget{_sub_menu_item_8cs_source_l00041}00041 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,75 @@
+\hypertarget{_initialize_area_8cs_source}{}\doxysection{Initialize\+Area.\+cs}
+\label{_initialize_area_8cs_source}\index{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Dock/InitializeArea.cs@{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Dock/InitializeArea.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00001}00001 \textcolor{keyword}{using }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00002}00002 \textcolor{keyword}{using }UnityEditor.IMGUI.Controls;}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00004}00004 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_bx_uni_1_1_scenario_builder_1_1_editor_internal}{BxUni.ScenarioBuilder.EditorInternal}}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00009}00009     \textcolor{keyword}{internal} \textcolor{keyword}{class }InitializeArea}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00010}00010     \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00011}00011         ScenarioTable m\_table;}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00013}00013         \textcolor{keyword}{internal} \textcolor{keywordtype}{void} Initialize()}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00014}00014         \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00015}00015             var state = \textcolor{keyword}{new} TreeViewState();}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00016}00016             var header = \textcolor{keyword}{new} ScenarioTableHeader();}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00018}00018             m\_table = \textcolor{keyword}{new} ScenarioTable(state, header);       }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00019}00019         \}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00021}00021         \textcolor{keyword}{internal} \textcolor{keywordtype}{void} DrawLayout()}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00022}00022         \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00023}00023             \textcolor{keywordflow}{if} (m\_table == \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00024}00024             \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00025}00025                 Initialize();}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00026}00026             \}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00028}00028             \textcolor{keywordflow}{if} (m\_table.AnyItems())}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00029}00029             \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00030}00030                 \textcolor{keyword}{using }var h1 = \textcolor{keyword}{new} HorizontalCenterScope(GUILayout.Width(300));}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00031}00031                 \textcolor{keyword}{using} (var v1 = \textcolor{keyword}{new} VerticalCenterScope())}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00032}00032                 \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00033}00033                     \textcolor{keywordflow}{if} (GUILayout.Button(\textcolor{stringliteral}{"{}新規作成"{}}, GUILayout.Width(200)))}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00034}00034                     \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00035}00035                         ScenarioBuilderEditUtility.CreateAsset();}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00036}00036                     \}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00037}00037                 \}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00039}00039                 var rect = GUILayoutUtility.GetLastRect();}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00041}00041                 \textcolor{keyword}{using }var h2 = \textcolor{keyword}{new} HorizontalCenterScope();}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00042}00042                 \textcolor{keyword}{using }var v2 = \textcolor{keyword}{new} VerticalCenterScope();}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00044}00044                 var window = ScenarioEditFlowWindow.Instance.position;}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00047}00047                 var areaRect = \textcolor{keyword}{new} Rect()}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00048}00048                 \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00049}00049                     x = rect.width + 30,}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00050}00050                     y = rect.y,}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00051}00051                     width = window.width -\/ rect.width -\/ 40,}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00052}00052                     height = rect.height,}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00053}00053                 \};}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00054}00054                 m\_table?.OnGUI(areaRect);}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00055}00055                 HandleDrawUtility.DrawRectBox(areaRect, Color.white);}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00056}00056             \}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00057}00057             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00058}00058             \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00059}00059                 \textcolor{keyword}{using }var h1 = \textcolor{keyword}{new} HorizontalCenterScope();}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00060}00060                 \textcolor{keyword}{using} (var v1 = \textcolor{keyword}{new} VerticalCenterScope())}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00061}00061                 \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00062}00062                     \textcolor{keywordflow}{if} (GUILayout.Button(\textcolor{stringliteral}{"{}新規作成"{}}, GUILayout.Width(200)))}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00063}00063                     \{}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00064}00064                         ScenarioBuilderEditUtility.CreateAsset();}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00065}00065                     \}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00066}00066                 \}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00067}00067             \}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00069}00069         \}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00071}00071     \}}
+\DoxyCodeLine{\Hypertarget{_initialize_area_8cs_source_l00072}00072 \}}
+
+\end{DoxyCode}

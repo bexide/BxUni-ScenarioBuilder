@@ -1,0 +1,55 @@
+\hypertarget{_command_select_area_8cs_source}{}\doxysection{Command\+Select\+Area.\+cs}
+\label{_command_select_area_8cs_source}\index{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Dock/CommandSelectArea.cs@{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Dock/CommandSelectArea.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00001}00001 \textcolor{keyword}{using }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00002}00002 \textcolor{keyword}{using }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00004}00004 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_bx_uni_1_1_scenario_builder_1_1_editor_internal}{BxUni.ScenarioBuilder.EditorInternal}}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00009}00009     \textcolor{keyword}{internal} \textcolor{keyword}{class }CommandSelectArea}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00010}00010     \{}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00012}00012 \textcolor{preprocessor}{        \#region property}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00014}00014         Vector2 m\_scrollPos = Vector2.zero;}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00016}00016         \textcolor{keyword}{internal} ReSizeCalculator ResizeWidth \{ \textcolor{keyword}{get}; \textcolor{keyword}{private} \textcolor{keyword}{set}; \}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00018}00018 \textcolor{preprocessor}{        \#endregion}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00020}00020         \textcolor{keyword}{internal} \textcolor{keywordtype}{void} DrawLayout(ScenarioData data)}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00021}00021         \{}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00022}00022             \textcolor{keywordflow}{if}(ResizeWidth == \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00023}00023             \{}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00024}00024                 ResizeWidth = \textcolor{keyword}{new} ReSizeCalculator(200f, ReSizeCalculator.PositionType.right);}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00025}00025             \}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00026}00026             ResizeWidth.SetupMinMax(150f, 300f);}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00028}00028             var allCommandGroup = CommandRegistConfig.GetAllCommandGroup();}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00029}00029             \textcolor{keyword}{using}(var scroll = \textcolor{keyword}{new} EditorGUILayout.ScrollViewScope(m\_scrollPos, GUILayout.Width(ResizeWidth.Value)))}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00030}00030             \{}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00031}00031                 \textcolor{keywordflow}{foreach}(var group \textcolor{keywordflow}{in} allCommandGroup)}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00032}00032                 \{}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00033}00033                     \textcolor{keywordflow}{if} (!group.Enabled) \{ \textcolor{keywordflow}{continue}; \}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00034}00034                     group.DrawLayout();}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00035}00035                 \}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00036}00036                 m\_scrollPos = scroll.scrollPosition;}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00037}00037             \}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00039}00039             var lastRect = GUILayoutUtility.GetLastRect();}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00040}00040             var ev = Event.current;}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00041}00041             \textcolor{keywordflow}{if} (!lastRect.Contains(ev.mousePosition))}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00042}00042             \{}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00043}00043                 CommandDrawer.TooltipMessage = \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00044}00044             \}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00046}00046             \textcolor{comment}{//幅の変更}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00047}00047             ResizeWidth.Calculate(lastRect);}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00048}00048         \}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00051}00051     \}}
+\DoxyCodeLine{\Hypertarget{_command_select_area_8cs_source_l00052}00052 \}}
+
+\end{DoxyCode}

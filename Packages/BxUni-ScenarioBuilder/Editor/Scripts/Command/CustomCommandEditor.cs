@@ -16,6 +16,9 @@ namespace BxUni.ScenarioBuilder.Editor
         static readonly internal string OpPreviewAreaGUIMethodName = nameof(OnPreviewAreaGUI);
         static readonly internal string GetPreviewAreaHeightMethodName = nameof(GetPreviewAreaHeight);
 
+        /// <summary>
+        /// 対象のコマンド
+        /// </summary>
         protected BaseCommand target { get; private set; }
 
         internal void Setup(BaseCommand command)
@@ -26,7 +29,7 @@ namespace BxUni.ScenarioBuilder.Editor
         /// <summary>
         /// 描画処理
         /// </summary>
-        /// <param name="rect"></param>
+        /// <param name="rect">描画範囲</param>
         public virtual void OnGUI(Rect rect)
         {
             EditorGUI.LabelField(rect, $"[{target.FindDrawer().ViewNameText}]");
@@ -35,7 +38,7 @@ namespace BxUni.ScenarioBuilder.Editor
         /// <summary>
         /// Previewエリアを表示するか
         /// </summary>
-        /// <returns></returns>
+        /// <returns>PreviewAreaを表示するか否か</returns>
         public virtual bool HasPreviewArea()
         {
             return false;
@@ -45,8 +48,8 @@ namespace BxUni.ScenarioBuilder.Editor
         /// Previewエリア内の描画処理。
         /// <para>HasPreviewAreaをoverrideし、TRUEを返す必要があります。</para>
         /// </summary>
-        /// <param name="rect"></param>
-        /// <param name="property"></param>
+        /// <param name="rect">描画範囲</param>
+        /// <param name="property">対象のCommandのSerializedProperty</param>
         public virtual void OnPreviewAreaGUI(Rect rect, SerializedProperty property)
         {
 
@@ -55,7 +58,8 @@ namespace BxUni.ScenarioBuilder.Editor
         /// <summary>
         /// Previewエリア内の表示の高さ
         /// </summary>
-        /// <returns></returns>
+        /// <param name="property">対象のCommandのSerializedProperty</param>
+        /// <returns>高さ</returns>
         public virtual float GetPreviewAreaHeight(SerializedProperty property)
         {
             return 128.0f;
@@ -65,7 +69,7 @@ namespace BxUni.ScenarioBuilder.Editor
         /// 有効なコマンドかチェックする
         /// </summary>
         /// <param name="errorLog">失敗時のエラーログ</param>
-        /// <returns></returns>
+        /// <returns>問題なければTRUE</returns>
         public virtual bool Validate(out string errorLog)
         {
             errorLog = string.Empty;

@@ -1,0 +1,62 @@
+\hypertarget{_scenario_element_8cs_source}{}\doxysection{Scenario\+Element.\+cs}
+\label{_scenario_element_8cs_source}\index{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Dock/TreeView/ScenarioElement.cs@{C:/home/murakami/BXTools/BxUni-\/ScenarioBuilder/Packages/BxUni-\/ScenarioBuilder/Editor/Scripts/EditorGUI/Dock/TreeView/ScenarioElement.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00001}00001 \textcolor{keyword}{using }System;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00002}00002 \textcolor{keyword}{using }System.IO;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00003}00003 \textcolor{keyword}{using }UnityEditor;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00005}00005 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_bx_uni_1_1_scenario_builder_1_1_editor_internal}{BxUni.ScenarioBuilder.EditorInternal}}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00006}00006 \{}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00007}00007     [Serializable]}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00008}00008     \textcolor{keyword}{internal} \textcolor{keyword}{class }ScenarioElement}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00009}00009     \{}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00010}00010         \textcolor{keyword}{internal} ScenarioData ScenarioAsset \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00011}00011         \textcolor{keyword}{internal} \textcolor{keywordtype}{string} Name \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00012}00012         \textcolor{keyword}{internal} \textcolor{keywordtype}{string} Path \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00013}00013         \textcolor{keyword}{internal} \textcolor{keywordtype}{long} Bytes \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00014}00014         \textcolor{keyword}{internal} DateTimeOffset LastWriteTime \{ \textcolor{keyword}{get}; \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00016}00016         \textcolor{keyword}{internal} ScenarioElement(\textcolor{keywordtype}{string} path)}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00017}00017         \{}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00018}00018             var data = AssetDatabase.LoadAssetAtPath<ScenarioData>(path);}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00019}00019             var info = \textcolor{keyword}{new} FileInfo(path);}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00021}00021             ScenarioAsset = data;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00022}00022             Name     = data.name;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00023}00023             Path     = path;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00024}00024             Bytes    = info.Length;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00025}00025             LastWriteTime = info.LastWriteTime.ToLocalTime();}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00026}00026         \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00028}00028         \textcolor{keyword}{internal} \textcolor{keywordtype}{string} DownloadSizeToString()}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00029}00029         \{}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00030}00030             \textcolor{keywordtype}{long} downloadSize = Bytes;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00032}00032             \textcolor{keywordtype}{double} kiloBytes = (double)downloadSize / 1024;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00033}00033             \textcolor{keywordtype}{double} megaBytes = kiloBytes / 1024;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00035}00035             \textcolor{keywordflow}{if} (megaBytes >= 1)}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00036}00036             \{}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00037}00037                 megaBytes = Math.Min(9999, Math.Ceiling(megaBytes));}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00038}00038                 \textcolor{keywordflow}{return} \$\textcolor{stringliteral}{"{}約\{megaBytes:\#,\#\#\#\}MB"{}};}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00039}00039             \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00040}00040             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (megaBytes >= 0.1)}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00041}00041             \{}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00042}00042                 megaBytes = Math.Ceiling(megaBytes * 10) / 10;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00043}00043                 \textcolor{keywordflow}{return} \$\textcolor{stringliteral}{"{}約\{megaBytes:0.\#\}MB"{}};}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00044}00044             \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00045}00045             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (kiloBytes >= 0.1)}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00046}00046             \{}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00047}00047                 kiloBytes = Math.Ceiling(kiloBytes * 10) / 10;}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00048}00048                 \textcolor{keywordflow}{return} \$\textcolor{stringliteral}{"{}約\{kiloBytes:0.\#\}KB"{}};}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00049}00049             \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00050}00050             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00051}00051             \{}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00052}00052                 \textcolor{keywordflow}{return} \$\textcolor{stringliteral}{"{}\{downloadSize\}B"{}};}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00053}00053             \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00054}00054         \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00055}00055     \}}
+\DoxyCodeLine{\Hypertarget{_scenario_element_8cs_source_l00056}00056 \}}
+
+\end{DoxyCode}
