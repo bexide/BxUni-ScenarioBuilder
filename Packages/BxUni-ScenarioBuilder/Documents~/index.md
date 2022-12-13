@@ -96,6 +96,7 @@ public class LogCommandRunner : BaseCommandRunner //BaseCommandRunnerを継承�
 ```
 
 3. Projectウィンドウ内のEditorフォルダ以下で右クリックをし、Create > BeXide > ScenarioBuilder > CommandRegistConfig をクリックしてCommandRegistConfig.assetを作成します。
+
 ※基本プロジェクトに1つあればいいので、2回目以降はこの手順はスキップ可
 ![](./Images/BxUni-ScenarioBuilder_006.gif)
 
@@ -116,6 +117,95 @@ public class LogCommandRunner : BaseCommandRunner //BaseCommandRunnerを継承�
 以上の対応で完了です。
 ![](./Images/BxUni-ScenarioBuilder_008.jpg)
 
-### Editor拡張で見た目を変える
+### 特殊なコマンドについて
+1. 待機コマンド
 
-### CommandEngineDirectorの
+指定秒待機したり、何かの動作を待機したりなど非同期な処理を行う場合はCommandRunnerのメソッドの返値を`System.Threading.Tasks.Task`、もしくは`CySharp.Threading.Tasks.UniTask`にすればOKです。
+```csharp
+// System.Threading.Tasks.Task の例
+using System.Threading;
+using System.Threading.Tasks;
+
+[CommandRunner(typeof(ExampleTaskCommand))]
+public async Task WaitDelayTask(ExampleTaskCommand cmd, CancellationToken ct = default)
+{
+    //指定秒待機したら次のコマンドが実行されます。
+    await Task.Delay(System.TimeSpan.FromSeconds(cmd.Sec));
+}
+
+// CySharp.Threading.Tasks.UniTask の例
+using System.Threading;
+using CySharp.Threading.Tasks;
+
+[CommandRunner(typeof(ExampleTaskCommand))]
+public async UniTask WaitDelayTask(ExampleTaskCommand cmd, CancellationToken ct = default)
+{
+    //指定秒待機したら次のコマンドが実行されます。
+    await UniTask.Delay(System.TimeSpan.FromSeconds(cmd.Sec));
+}
+
+```
+
+2. ジャンプコマンド
+
+パッケージを入れた時から使用出来る「ラベルコマンド」と「ジャンプコマンド」があります。
+例えば以下の画像のように設定すると1個目のジャンプコマンドで3個目のラベルコマンドにジャンプするので
+2個目のLogCommandは無視されます。
+![](./Images/BxUni-ScenarioBuilder_009.jpg)
+
+この仕組みを利用し、自作のジャンプコマンドを用意することが出来ます。
+ここではコマンド側で指定した複数のラベルからランダムで1つ選択し、そこへジャンプするサンプルを書いてみます。
+
+```csharp
+// Command
+using UnityEngine;
+using BxUni.ScenarioBuilder;
+
+public class RandomJumpCommand : BaseCommand
+    , IJumpCommand                                  // IJumpCommand のインターフェースを実装する
+{
+    [Header("ジャンプ先のラベル")]
+    [SerializeField, LabelCommand]
+    string[] m_targetLabels = new string[0];
+
+    /// <summary>
+    /// ジャンプ先のラベル
+    /// </summary>
+    public string[] TargetLabels => m_targetLabels;
+}
+
+// CommandRunner
+using UnityEngine;
+using BxUni.ScenarioBuilder;
+
+public class RandomJumpCommandRunner : BaseCommandRunner
+{
+    [CommandRunner(typeof(RandomJumpCommand))]
+    public string RandomJump(RandomJumpCommand cmd)           // 返値をstringにする
+    {
+        int index = Random.Range(0, cmd.TargetLabels.Length);
+        string label = cmd.TargetLabels[index];
+        return label;　　　　　　　　　　　　　　　　　　　　　　// ジャンプ先のラベル名を返す
+    }
+
+
+    /*
+    // 返値を「Task<string>」、または「UniTask<string>」にすることで
+    // 非同期の実装も可能。
+
+    [CommandRunner(typeof(RandomJumpCommand))]
+    public async UniTask<string> RandomJump(
+        RandomJumpCommand cmd, CancellationToken = default
+    )
+    {
+        // 以下の場合、3秒待ってからジャンプとなる。
+        await UniTask.Delay(System.TimeSpan.FromSeconds(3));
+        int index = Random.Range(0, cmd.TargetLabels.Length);
+        string label = cmd.TargetLabels[index];
+        return label;
+    }
+    //*/
+}
+
+
+```
