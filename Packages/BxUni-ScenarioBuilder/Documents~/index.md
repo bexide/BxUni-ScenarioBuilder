@@ -161,6 +161,7 @@ public async UniTask WaitDelayTask(ExampleTaskCommand cmd, CancellationToken ct 
 using UnityEngine;
 using BxUni.ScenarioBuilder;
 
+[System.Serializable]
 public class RandomJumpCommand : BaseCommand
     , IJumpCommand                                  // IJumpCommand のインターフェースを実装する
 {
