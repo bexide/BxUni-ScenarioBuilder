@@ -49,7 +49,3 @@ MonoBehaviour:
       m_icon: {fileID: 0}
       m_script: {fileID: 11500000, guid: 81a4cf91312a9134d89f91a3776926b1, type: 3}
       m_tooltip: "\u30AF\u30EA\u30C3\u30AF\u5F85\u3061\u3057\u307E\u3059\u3002"
-    - m_viewName: "\u9078\u629E\u5F85\u3061"
-      m_icon: {fileID: 0}
-      m_script: {fileID: 11500000, guid: 516f9e30837156248b608955a7d66e4b, type: 3}
-      m_tooltip: "\u9078\u629E\u3057\u305F\u30E9\u30D9\u30EB\u3078\u30B8\u30E3\u30F3\u30D7\u3057\u307E\u3059\u3002"

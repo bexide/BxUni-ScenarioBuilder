@@ -2,7 +2,8 @@
     "name": "BxUni.ScenarioBuilder.Sample.Demo.Runtime",
     "rootNamespace": "",
     "references": [
-        "GUID:6600a55e097ada8448f7b8ad8affc813"
+        "GUID:6600a55e097ada8448f7b8ad8affc813",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

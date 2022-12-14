@@ -19,6 +19,8 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         {
             errorLog = string.Empty;
 
+            if(command == null) { return true; }
+
             var editor = FindCustomCommandEditor(command);
             if(editor == null)
             {//Validatorは特に見つからなかったのでtrue

@@ -11,9 +11,11 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             var groups = CommandRegistConfig.GetAllCommandGroup();
             if(groups == null) { return null; }
 
-            return groups
+            var drawer = groups
                 .SelectMany(group => group.CommandDrawers)
-                .FirstOrDefault(x => x.GetClassType() == command.GetType());
+                .FirstOrDefault(x => x.GetClassType() == command?.GetType());
+
+            return drawer;
         }
 
     }

@@ -56,25 +56,44 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             {
                 if (index < 0 || data.Commands.Count <= index) { return; }
 
-                var command = data.Commands[index];
-                var drawer  = command.FindDrawer();
-
                 var elementRect = new Rect(rect)
                 {
                     height = EditorGUIProperty.ElementHeight,
                 };
+                var command = data.Commands[index];
+                if(command == null)
+                {
+                    HandleDrawUtility.DrawRectBox(rect, Color.white);
+                    EditorGUI.LabelField(rect, $"[ NOT FOUND ]");
 
+                    //削除ボタン
+                    var removeButtonRect = new Rect(elementRect)
+                    {
+                        x = elementRect.xMax - 32,
+                        size = EditorGUIIcons.IconDefaultSize,
+                    };
+                    if (DrawRemoveButton(removeButtonRect))
+                    {
+                        data.Commands.RemoveAt(index);
+                        List.ClearSelection();
+                        EditorUtility.SetDirty(data);
+                    }
+                    return;
+                }
+                
+                var drawer  = command.FindDrawer();
                 if (drawer == null)
                 {
                     HandleDrawUtility.DrawRectBox(rect, Color.white);
                     EditorGUI.LabelField(rect, command.GetType().Name);
 
+                    //削除ボタン
                     var removeButtonRect = new Rect(elementRect)
                     {
-                        x    = elementRect.xMax - 16,
+                        x = elementRect.xMax - 32,
                         size = EditorGUIIcons.IconDefaultSize,
                     };
-                    if (GUI.Button(removeButtonRect, EditorGUIIcons.RemoveButtonTex, GUI.skin.label))
+                    if (DrawRemoveButton(removeButtonRect))
                     {
                         data.Commands.RemoveAt(index);
                         List.ClearSelection();
@@ -181,6 +200,11 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 if (index < 0 || commandsProperty.arraySize <= index) { return 0f; }
 
                 var command = data.Commands[index];
+                if(command == null)
+                {
+                    return EditorGUIProperty.ElementHeight;
+                }
+
                 var drawer  = command.FindDrawer();
 
                 var property = commandsProperty.GetArrayElementAtIndex(index);

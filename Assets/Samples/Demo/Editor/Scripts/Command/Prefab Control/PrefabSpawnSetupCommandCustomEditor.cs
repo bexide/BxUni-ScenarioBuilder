@@ -15,8 +15,9 @@ namespace BxUni.ScenarioBuilder.Sample.Demo.Editor
 
         public override void OnGUI(Rect rect)
         {
+            int count = Cmd.Setups?.Length ?? 0;
             EditorGUI.LabelField(
-                rect, $"データ設定数: {Cmd.Setups.Length}");
+                rect, $"データ設定数: {count}");
         }
 
         public override bool HasPreviewArea()
