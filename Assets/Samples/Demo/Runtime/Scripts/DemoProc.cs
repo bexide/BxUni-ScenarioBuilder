@@ -15,7 +15,6 @@ namespace BxUni.ScenarioBuilder.Sample.Demo
             //各コールバックの登録
             m_director.onStart         += OnStart;
             m_director.onEnd           += OnEnd;
-            m_director.onPostResetTask += OnPostResetTask;
 
             //初期化設定
             m_director.Initialize(m_scenarioAsset);
@@ -38,16 +37,6 @@ namespace BxUni.ScenarioBuilder.Sample.Demo
         void OnEnd()
         {
             Debug.Log($"<color=lime>> {nameof(OnEnd)}</color>");
-        }
-
-        /// <summary>
-        /// リセット時に呼ばれるイベント
-        /// </summary>
-        /// <returns></returns>
-        async Task OnPostResetTask()
-        {
-            await Task.CompletedTask;
-            Debug.Log($"<color=lime>> {nameof(OnPostResetTask)}</color>");
         }
     }
 }

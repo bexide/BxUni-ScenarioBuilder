@@ -1,10 +1,7 @@
 //UniRxが使用出来る場合
 
 #if SCENARIOBUILDER_UNIRX_SUPPORT
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 using UniRx;
 
 namespace BxUni.ScenarioBuilder
