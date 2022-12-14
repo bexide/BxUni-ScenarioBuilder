@@ -3,11 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-//UniRxが使用出来る場合
-#if SCENARIOBUILDER_UNIRX_SUPPORT
-    using UniRx;
-#endif
-
 //UniTaskが使用出来る場合
 #if SCENARIOBUILDER_UNITASK_SUPPORT
     using Cysharp.Threading.Tasks;
@@ -19,7 +14,7 @@ namespace BxUni.ScenarioBuilder
     /// コマンドを実行するコンポーネント
     /// </summary>
     [DefaultExecutionOrder(-10)]
-    public sealed class CommandEngineDirector : MonoBehaviour
+    public sealed partial class CommandEngineDirector : MonoBehaviour
     {
 #pragma warning disable 0649
         [Header("=== 再生するシナリオ ===")]
@@ -73,21 +68,6 @@ namespace BxUni.ScenarioBuilder
         public event Func<Task> onPostResetTask;
 #endif
 
-        #endregion
-
-        #region IObservable
-#if SCENARIOBUILDER_UNIRX_SUPPORT
-
-        /// <summary>開始時の通知</summary>
-        public IObservable<Unit> OnStart => Engine.OnStart;
-
-        /// <summary>終了時の通知</summary>
-        public IObservable<Unit> OnEnd => Engine.OnEnd;
-
-        /// <summary>リセット時の通知</summary>
-        public IObservable<Unit> OnResetCompleted => Engine.OnResetCompleted;
-
-#endif
         #endregion
 
         #region Method

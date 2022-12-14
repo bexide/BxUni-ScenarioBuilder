@@ -9,11 +9,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using BxUni.ScenarioBuilderInternal;
 
-//UniRxが使用出来る場合
-#if SCENARIOBUILDER_UNIRX_SUPPORT
-    using UniRx;
-#endif
-
 //UniTaskが使用出来る場合
 #if SCENARIOBUILDER_UNITASK_SUPPORT
     using Cysharp.Threading.Tasks;
@@ -24,7 +19,7 @@ namespace BxUni.ScenarioBuilder
     /// <summary>
     /// コマンドの処理を行う
     /// </summary>
-    public class CommandEngine
+    internal partial class CommandEngine
     {
         #region Property
 
@@ -57,51 +52,30 @@ namespace BxUni.ScenarioBuilder
 
         #endregion //Property
 
-        #region IObservable
-#if SCENARIOBUILDER_UNIRX_SUPPORT
-
-        /// <summary>
-        /// シナリオ開始時に通知
-        /// </summary>
-        public IObservable<Unit> OnStart => onStartEvent.AsObservable().Where(_ => !IsResetRunning);
-
-        /// <summary>
-        /// シナリオ終了時に通知
-        /// </summary>
-        public IObservable<Unit> OnEnd => onEndEvent.AsObservable().Where(_ => !IsResetRunning);
-
-        /// <summary>
-        /// リセット通知
-        /// </summary>
-        public IObservable<Unit> OnResetCompleted => onResetCompleted.AsObservable();
-
-#endif
-        #endregion
-
         #region event
 
         /// <summary>
         /// シナリオ実行開始時に呼ばれるイベント
         /// </summary>
-        public UnityEvent onStartEvent { get; } = new UnityEvent();
+        internal UnityEvent onStartEvent { get; } = new UnityEvent();
 
         /// <summary>
         /// シナリオ実行終了時に呼ばれるイベント
         /// </summary>
-        public UnityEvent onEndEvent { get; } = new UnityEvent();
+        internal UnityEvent onEndEvent { get; } = new UnityEvent();
 
         /// <summary>
         /// シナリオリセット時に呼ばれるイベント
         /// </summary>
-        public UnityEvent onResetCompleted { get; } = new UnityEvent();
+        internal UnityEvent onResetCompleted { get; } = new UnityEvent();
 
         /// <summary>
         /// 各Runner内のResetRunner処理が終わったあとに実行する処理を登録するためのイベント
         /// </summary>
 #if SCENARIOBUILDER_UNITASK_SUPPORT
-        public event Func<UniTask> onPostResetTask;
+        internal event Func<UniTask> onPostResetTask;
 #else
-        public event Func<Task> onPostResetTask;
+        internal event Func<Task> onPostResetTask;
 #endif
 
         #endregion
@@ -142,7 +116,7 @@ namespace BxUni.ScenarioBuilder
         /// <summary>
         /// 再生中のシナリオをキャンセルして終了します。
         /// </summary>
-        public void Skip()
+        internal void Skip()
         {
             Cancel?.Cancel();
         }
@@ -152,7 +126,7 @@ namespace BxUni.ScenarioBuilder
         /// </summary>
         /// <param name="commands">実行するステートのパラメータ群</param>
         /// <param name="runners">実行対象</param>
-        public void Initialize(BaseCommand[] commands, BaseCommandRunner[] runners)
+        internal void Initialize(BaseCommand[] commands, BaseCommandRunner[] runners)
         {
             Debug.Assert(commands != null, "The first argument \"commands\" is null.");
             if (commands == null) { return; }
@@ -210,7 +184,7 @@ namespace BxUni.ScenarioBuilder
         /// </summary>
         /// <param name="scenario">実行するシナリオ</param>
         /// <param name="runners">実行対象</param>
-        public void Initialize(ScenarioData scenario, BaseCommandRunner[] runners)
+        internal void Initialize(ScenarioData scenario, BaseCommandRunner[] runners)
         {
             Debug.Assert(scenario != null, "The first argument \"scenario\" is null.");
             if(scenario == null) { return; }
@@ -222,7 +196,7 @@ namespace BxUni.ScenarioBuilder
         /// 実行（待機無し）
         /// </summary>
         /// <param name="ct"></param>
-        public void Run(CancellationToken ct = default)
+        internal void Run(CancellationToken ct = default)
         {
 #if SCENARIOBUILDER_UNITASK_SUPPORT
             RunTask(ct).Forget();
@@ -237,9 +211,9 @@ namespace BxUni.ScenarioBuilder
         /// <param name="ct"></param>
         /// <returns></returns>
 #if SCENARIOBUILDER_UNITASK_SUPPORT
-        public async UniTask RunTask(CancellationToken ct = default)
+        internal async UniTask RunTask(CancellationToken ct = default)
 #else
-        public async Task RunTask(CancellationToken ct = default)
+        internal async Task RunTask(CancellationToken ct = default)
 #endif
         {
             Debug.Assert(

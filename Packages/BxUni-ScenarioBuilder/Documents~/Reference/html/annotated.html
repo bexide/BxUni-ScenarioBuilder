@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('annotated.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,21 +102,23 @@ $(function() {
 <tr id="row_0_0_0_2_" class="odd"><td class="entry"><span style="width:64px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_editor_1_1_scenario_builder_editor_menu_item_attribute.html" target="_self">ScenarioBuilderEditorMenuItemAttribute</a></td><td class="desc">BxUni-ScenarioBuilderウィンドウのメニューアイテムを追加するためのアトリビュート </td></tr>
 <tr id="row_0_0_1_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_base_command.html" target="_self">BaseCommand</a></td><td class="desc">全ステートの継承元クラス  </td></tr>
 <tr id="row_0_0_2_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_base_command_runner.html" target="_self">BaseCommandRunner</a></td><td class="desc">コマンドの実行対象クラス  </td></tr>
-<tr id="row_0_0_3_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_command_engine.html" target="_self">CommandEngine</a></td><td class="desc">コマンドの処理を行う  </td></tr>
-<tr id="row_0_0_4_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_command_engine_director.html" target="_self">CommandEngineDirector</a></td><td class="desc">コマンドを実行するコンポーネント  </td></tr>
-<tr id="row_0_0_5_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_command_runner_attribute.html" target="_self">CommandRunnerAttribute</a></td><td class="desc">Methodに付けることでコマンドの実行対象のMethodになります。  </td></tr>
-<tr id="row_0_0_6_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="interface_bx_uni_1_1_scenario_builder_1_1_i_jump_command.html" target="_self">IJumpCommand</a></td><td class="desc">どこかのラベルに遷移するためのコマンドに実装するInterface  </td></tr>
-<tr id="row_0_0_7_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_jump_command.html" target="_self">JumpCommand</a></td><td class="desc">targetLabelで指定した文字列と一致するLabelCommandまでジャンプするコマンド。  </td></tr>
-<tr id="row_0_0_8_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_jump_command_runner.html" target="_self">JumpCommandRunner</a></td><td class="desc">JumpCommandが流れてきた時に処理を実行するコンポーネント  </td></tr>
-<tr id="row_0_0_9_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_label_command.html" target="_self">LabelCommand</a></td><td class="desc">フラグの役割をもつコマンド。 </td></tr>
-<tr id="row_0_0_10_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_label_command_attribute.html" target="_self">LabelCommandAttribute</a></td><td class="desc">stringのFieldに付けることでシナリオ編集時にシナリオ内にあるラベルを指定できるようになります。  </td></tr>
-<tr id="row_0_0_11_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_scenario_data.html" target="_self">ScenarioData</a></td><td class="desc">実行するコマンドのリストを保持するアセット  </td></tr>
+<tr id="row_0_0_3_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_command_engine_director.html" target="_self">CommandEngineDirector</a></td><td class="desc">コマンドを実行するコンポーネント  </td></tr>
+<tr id="row_0_0_4_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_command_runner_attribute.html" target="_self">CommandRunnerAttribute</a></td><td class="desc">Methodに付けることでコマンドの実行対象のMethodになります。  </td></tr>
+<tr id="row_0_0_5_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="interface_bx_uni_1_1_scenario_builder_1_1_i_jump_command.html" target="_self">IJumpCommand</a></td><td class="desc">どこかのラベルに遷移するためのコマンドに実装するInterface  </td></tr>
+<tr id="row_0_0_6_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_jump_command.html" target="_self">JumpCommand</a></td><td class="desc">targetLabelで指定した文字列と一致するLabelCommandまでジャンプするコマンド。  </td></tr>
+<tr id="row_0_0_7_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_jump_command_runner.html" target="_self">JumpCommandRunner</a></td><td class="desc">JumpCommandが流れてきた時に処理を実行するコンポーネント  </td></tr>
+<tr id="row_0_0_8_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_label_command.html" target="_self">LabelCommand</a></td><td class="desc">フラグの役割をもつコマンド。 </td></tr>
+<tr id="row_0_0_9_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_label_command_attribute.html" target="_self">LabelCommandAttribute</a></td><td class="desc">stringのFieldに付けることでシナリオ編集時にシナリオ内にあるラベルを指定できるようになります。  </td></tr>
+<tr id="row_0_0_10_" class="odd"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_bx_uni_1_1_scenario_builder_1_1_scenario_data.html" target="_self">ScenarioData</a></td><td class="desc">実行するコマンドのリストを保持するアセット  </td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -61,6 +61,7 @@
 # doxygen
 /html/
 /latex/
+/doxyfile/
 
 #作業ファイル
 /EditorData/

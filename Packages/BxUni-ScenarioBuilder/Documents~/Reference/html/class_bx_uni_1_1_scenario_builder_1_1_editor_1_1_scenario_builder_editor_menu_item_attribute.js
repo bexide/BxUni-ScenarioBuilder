@@ -1,0 +1,4 @@
+var class_bx_uni_1_1_scenario_builder_1_1_editor_1_1_scenario_builder_editor_menu_item_attribute =
+[
+    [ "ScenarioBuilderEditorMenuItemAttribute", "class_bx_uni_1_1_scenario_builder_1_1_editor_1_1_scenario_builder_editor_menu_item_attribute.html#ac87d43826b543968f0b8b3fa3438093b", null ]
+];

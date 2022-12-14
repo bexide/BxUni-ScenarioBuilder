@@ -122,7 +122,7 @@ public class LogCommandRunner : BaseCommandRunner //BaseCommandRunnerを継承�
 ### 特殊なコマンドについて
 1. 待機コマンド
 
-指定秒待機したり、何かの動作を待機したりなど非同期な処理を行う場合はCommandRunnerのメソッドの返値を`System.Threading.Tasks.Task`、もしくは`CySharp.Threading.Tasks.UniTask`にすればOKです。
+指定秒待機したり、何かの動作を待機したりなど非同期な処理を行う場合はCommandRunnerのメソッドの返値を`System.Threading.Tasks.Task`、もしくは`Cysharp.Threading.Tasks.UniTask`にすればOKです。
 ```csharp
 // System.Threading.Tasks.Task の例
 using System.Threading;
@@ -135,9 +135,9 @@ public async Task WaitDelayTask(ExampleTaskCommand cmd, CancellationToken ct = d
     await Task.Delay(System.TimeSpan.FromSeconds(cmd.Sec));
 }
 
-// CySharp.Threading.Tasks.UniTask の例
+// Cysharp.Threading.Tasks.UniTask の例
 using System.Threading;
-using CySharp.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 [CommandRunner(typeof(ExampleTaskCommand))]
 public async UniTask WaitDelayTask(ExampleTaskCommand cmd, CancellationToken ct = default)

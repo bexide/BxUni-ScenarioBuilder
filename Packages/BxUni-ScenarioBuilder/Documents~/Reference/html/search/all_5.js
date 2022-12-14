@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['haspreviewarea_0',['HasPreviewArea',['../class_bx_uni_1_1_scenario_builder_1_1_editor_1_1_custom_command_editor.html#a69778a573670187975dd243bfefc7500',1,'BxUni::ScenarioBuilder::Editor::CustomCommandEditor']]]
+  ['ijumpcommand_0',['IJumpCommand',['../interface_bx_uni_1_1_scenario_builder_1_1_i_jump_command.html',1,'BxUni::ScenarioBuilder']]],
+  ['initialize_1',['Initialize',['../class_bx_uni_1_1_scenario_builder_1_1_command_engine_director.html#aaef23e947ad5181f6650f70d81173d83',1,'BxUni::ScenarioBuilder::CommandEngineDirector']]]
 ];
