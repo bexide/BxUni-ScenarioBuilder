@@ -35,6 +35,10 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                     .Reverse()
                     .SelectMany(x => x.m_commandDrawerGroup)
                     .ToArray();
+
+            ScenarioEditFlowWindow.Instance
+                .InitializeArea
+                .Reset();
         }
 
         void OnValidate()

@@ -67,38 +67,51 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             EditorPrefs.SetString(k_saveDirectoryPathKey, saveDirectoryPath);
         }
 
-        [ScenarioBuilderEditorMenuItem("File/Open Scenario", 99999998)]
-        internal static void OpenAsset()
+        [ScenarioBuilderEditorMenuItem("File/Save Scenario", 99999998)]
+        internal static void SaveAsset()
         {
-            //最後に開いたファイルのディレクトリパスを取得
-            //無ければApplication.dataPathを指定
+            var currentScenario = ScenarioEditFlowWindow.Instance.CurrentEditData;
+            if(currentScenario != null)
+            {
+                AssetDatabase.SaveAssetIfDirty(currentScenario);
+            }
+        }
+        
+        [ScenarioBuilderEditorMenuItem("File/Save As Scenario", 99999998)]
+        internal static void SaveAsAsset()
+        {
+            var currentScenario = ScenarioEditFlowWindow.Instance.CurrentEditData;
+            if(currentScenario == null) { return; }
+
             string directoryPath = EditorPrefs.GetString(k_saveDirectoryPathKey, Application.dataPath);
             if (!Directory.Exists(directoryPath))
             {
                 directoryPath = Application.dataPath;
             }
 
-            string selectPath = EditorUtility.OpenFilePanel(
-                "開く", directoryPath, "asset");
-            string path = selectPath.Replace(Application.dataPath, "Assets");
+            string path = EditorUtility.SaveFilePanelInProject(
+                title: "別名保存",
+                defaultName: $"{currentScenario.name}_copy",
+                extension: "asset",
+                message: "",
+                directoryPath);
 
             if (string.IsNullOrEmpty(path)) { return; }
 
-            var asset = AssetDatabase.LoadAssetAtPath<ScenarioData>(path);
-            if(asset == null)
+            var newObj = ScriptableObject.CreateInstance<ScenarioData>();
+            foreach(var cmd in currentScenario.Commands)
             {
-                EditorUtility.DisplayDialog(
-                    title  : "Error",
-                    message: "形式の違うファイルです",
-                    ok     : "OK");
+                newObj.Commands.Add(cmd.Clone());
             }
-            else
-            {
-                ScenarioEditFlowWindow.CreateWindow(asset);
+            AssetDatabase.CreateAsset(newObj, path);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
 
-                string saveDirectoryPath = Path.GetDirectoryName(selectPath);
-                EditorPrefs.SetString(k_saveDirectoryPathKey, saveDirectoryPath);
-            }
+            var asset = AssetDatabase.LoadAssetAtPath<ScenarioData>(path);
+            ScenarioEditFlowWindow.CreateWindow(asset);
+
+            string saveDirectoryPath = Path.GetDirectoryName(path);
+            EditorPrefs.SetString(k_saveDirectoryPathKey, saveDirectoryPath);
         }
 
         [ScenarioBuilderEditorMenuItem("File/Export/Json", 99999989)]
@@ -210,6 +223,15 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             AssetDatabase.Refresh();
 
             Debug.Log($"<color=yellow>{sb}</color>");
+        }
+
+        [ScenarioBuilderEditorMenuItem("File/To Home", 19999999)]
+        internal static void ToHome()
+        {
+            ScenarioEditFlowWindow.CreateWindow(null);
+            ScenarioEditFlowWindow.Instance
+                .InitializeArea
+                .Reset();
         }
 
         [ScenarioBuilderEditorMenuItem("Edit/ClearCommands", 89999999)]

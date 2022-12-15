@@ -68,5 +68,9 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         }
 
+        internal void Reset()
+        {
+            m_table?.Reload();
+        }
     }
 }
