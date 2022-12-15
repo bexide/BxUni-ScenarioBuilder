@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
-namespace BxUni.ScenarioBuilder.Sample.Demo
+namespace BxUni.ScenarioBuilder.Sample.Demo.Editor
 {
     [CustomPropertyDrawer(typeof(PrefabIDSelectorAttribute))]
     public class PrefabIDSelectorPropertyDrawer : PropertyDrawer

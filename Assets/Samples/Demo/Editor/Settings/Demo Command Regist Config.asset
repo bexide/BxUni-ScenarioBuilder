@@ -25,6 +25,10 @@ MonoBehaviour:
       m_icon: {fileID: 0}
       m_script: {fileID: 11500000, guid: 85ecf98135c841545b152f339fb76f8f, type: 3}
       m_tooltip: "\u30A2\u30AF\u30C6\u30A3\u30D6\u306E\u5207\u66FF\u3092\u884C\u3044\u307E\u3059\u3002"
+    - m_viewName: "\u30A2\u30CB\u30E1\u5207\u66FF"
+      m_icon: {fileID: 0}
+      m_script: {fileID: 11500000, guid: a62fb5b930919584b8b5710a1e20ac9f, type: 3}
+      m_tooltip: "\u30A2\u30CB\u30E1\u306E\u5207\u66FF\u3092\u884C\u3044\u307E\u3059\u3002"
   - m_groupName: Demo_BackgroundControl
     m_enabled: 1
     m_color: {r: 0, g: 0.8679245, b: 0.01799209, a: 0}

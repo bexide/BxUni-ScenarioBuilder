@@ -49,6 +49,20 @@ namespace BxUni.ScenarioBuilder.Sample.Demo
             go.SetActive(cmd.Active);
         }
 
+        /// <summary>
+        /// SetAnimationCommandが流れてきた時に処理を行う
+        /// </summary>
+        /// <param name="cmd">コマンドのパラメータ</param>
+        [CommandRunner(typeof(SetAnimationCommand))]
+        public void SetAnimation(SetAnimationCommand cmd)
+        {
+            if(!InstanceTable.TryGetValue(cmd.ID, out var go)) { return; }
+
+            if(!go.TryGetComponent<Animator>(out var animator)) { return; }
+
+            animator.Play(cmd.AnimationName);
+        }
+
         #endregion
 
         public override void ResetRunner()
