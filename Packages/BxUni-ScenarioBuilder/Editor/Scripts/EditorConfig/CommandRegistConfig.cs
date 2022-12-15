@@ -37,7 +37,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                     .ToArray();
 
             ScenarioEditFlowWindow.Instance
-                .InitializeArea
+                ?.InitializeArea
                 .Reset();
         }
 
