@@ -52,5 +52,20 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 return $"{downloadSize}B";
             }
         }
+
+        internal (bool validate, int count) GetValidateCount()
+        {
+            int count = 0;
+            foreach(var cmd in ScenarioAsset.Commands)
+            {
+                if(!CommandValidator.Validate(cmd, out _))
+                {
+                    count++;
+                }
+            }
+
+            bool validate = count == 0;
+            return (validate, count);
+        }
     }
 }

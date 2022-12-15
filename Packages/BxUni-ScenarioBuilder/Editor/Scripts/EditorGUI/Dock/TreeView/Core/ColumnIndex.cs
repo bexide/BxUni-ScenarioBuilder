@@ -5,6 +5,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         Name,
         Path,
         Bytes,
+        Validate,
         LastTime,
         OpenButton,
     }

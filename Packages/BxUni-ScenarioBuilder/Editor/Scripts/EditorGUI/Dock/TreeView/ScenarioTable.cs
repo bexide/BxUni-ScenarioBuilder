@@ -56,6 +56,9 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 break;
             case ColumnIndex.OpenButton:
                 break;
+            case ColumnIndex.Validate:
+                orderedEnumerable = items.OrderBy(item => item.element.GetValidateCount().count);
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(index), index, null);
             }
@@ -128,6 +131,14 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                     {
                         ScenarioEditFlowWindow.CreateWindow(item.element.ScenarioAsset);
                         Debug.Log(item.element.Path);
+                    }
+                    break;
+                case ColumnIndex.Validate:
+                    (bool validate, int count) = item.element.GetValidateCount();
+                    string label = $"{(validate ? "✔" : "✕")} : {count}";
+                    using (new ContentColorScope(validate ? Color.green : Color.red))
+                    {
+                        EditorGUI.LabelField(rect, label, labelStyle);
                     }
                     break;
                 default:

@@ -23,6 +23,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 new NameColumn(),
                 new PathColumn(),
                 new BytesColumn(),
+                new ValidateColumn(),
                 new LastTimeColumn(),
                 new OpenButtonColumn(),
             };

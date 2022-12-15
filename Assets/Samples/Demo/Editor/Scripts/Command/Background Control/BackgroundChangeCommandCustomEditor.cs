@@ -45,6 +45,16 @@ namespace BxUni.ScenarioBuilder.Sample.Demo.Editor
             }
         }
 
+        public override bool Validate(out string errorLog)
+        {
+            errorLog = string.Empty;
 
+            if(Cmd.BackgroundSprite == null)
+            {
+                errorLog = "Spriteを設定してください。";
+            }
+
+            return string.IsNullOrEmpty(errorLog);
+        }
     }
 }

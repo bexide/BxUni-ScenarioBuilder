@@ -10,7 +10,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         
         internal BytesColumn()
         {
-            width = 50;
+            width = 30;
             headerContent = new GUIContent("Bytes");
         }
     }

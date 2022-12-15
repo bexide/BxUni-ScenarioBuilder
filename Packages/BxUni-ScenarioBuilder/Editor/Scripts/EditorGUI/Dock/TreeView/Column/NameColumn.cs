@@ -10,7 +10,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         
         internal NameColumn()
         {
-            width = 150;
+            width = 80;
             headerContent = new GUIContent("Name");
         }
     }

@@ -10,7 +10,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
     
         internal PathColumn()
         {
-            width = 250;
+            width = 200;
             headerContent = new GUIContent("Path");
         }
     }
