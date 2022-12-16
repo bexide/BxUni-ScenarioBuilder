@@ -32,7 +32,8 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         void SortItems(MultiColumnHeader multiColumnHeader)
         {
             SessionState.SetInt(k_sortedColumnIndexStateKey, multiColumnHeader.sortedColumnIndex);
-            var index = (ColumnIndex)multiColumnHeader.sortedColumnIndex;
+            int columnIndex = multiColumnHeader.sortedColumnIndex;
+            var column = ScenarioTableHeader.GetColumns()[columnIndex];
             bool ascending = multiColumnHeader.IsSortedAscending(multiColumnHeader.sortedColumnIndex);
 
             var items = rootItem
@@ -40,27 +41,27 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 .Cast<ScenarioTableItem>();
 
             IOrderedEnumerable<ScenarioTableItem> orderedEnumerable = null;
-            switch (index)
+            switch (column)
             {
-            case ColumnIndex.Name:
+            case NameColumn:
                 orderedEnumerable = items.OrderBy(item => item.element.Name);
                 break;
-            case ColumnIndex.Path:
+            case PathColumn:
                 orderedEnumerable = items.OrderBy(item => item.element.Path);
                 break;
-            case ColumnIndex.Bytes:
+            case BytesColumn:
                 orderedEnumerable = items.OrderBy(item => item.element.Bytes);
                 break;
-            case ColumnIndex.LastTime:
+            case LastTimeColumn:
                 orderedEnumerable = items.OrderBy(item => item.element.LastWriteTime);
                 break;
-            case ColumnIndex.OpenButton:
+            case OpenButtonColumn:
                 break;
-            case ColumnIndex.Validate:
+            case ValidateColumn:
                 orderedEnumerable = items.OrderBy(item => item.element.GetValidateCount().count);
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(index), index, null);
+                throw new ArgumentOutOfRangeException(nameof(columnIndex), columnIndex, null);
             }
 
             if(orderedEnumerable != null)
@@ -107,33 +108,34 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             for(int i=0; i<args.GetNumVisibleColumns(); i++)
             {
                 var rect = args.GetCellRect(i);
-                var columnIndex = (ColumnIndex)args.GetColumn(i);
+                int columnIndex = args.GetColumn(i);
+                var column = ScenarioTableHeader.GetColumns()[columnIndex];
 
                 var labelStyle = args.selected ? EditorStyles.whiteLabel : EditorStyles.label;
                 labelStyle.alignment = TextAnchor.MiddleLeft;
 
-                switch (columnIndex)
+                switch (column)
                 {
-                case ColumnIndex.Name:
+                case NameColumn:
                     EditorGUI.LabelField(rect, item.element.Name, labelStyle);
                     break;
-                case ColumnIndex.Path:
+                case PathColumn:
                     EditorGUI.LabelField(rect, item.element.Path, labelStyle);
                     break;
-                case ColumnIndex.Bytes:
+                case BytesColumn:
                     EditorGUI.LabelField(rect, $"{item.element.DownloadSizeToString()}", labelStyle);
                     break;
-                case ColumnIndex.LastTime:
+                case LastTimeColumn:
                     EditorGUI.LabelField(rect, $"{item.element.LastWriteTime:yyyy/MM/dd HH:mm:ss}");
                     break;
-                case ColumnIndex.OpenButton:
+                case OpenButtonColumn:
                     if(GUI.Button(rect, "OPEN"))
                     {
                         ScenarioEditFlowWindow.CreateWindow(item.element.ScenarioAsset);
                         Debug.Log(item.element.Path);
                     }
                     break;
-                case ColumnIndex.Validate:
+                case ValidateColumn:
                     (bool validate, int count) = item.element.GetValidateCount();
                     string label = $"{(validate ? "✔" : "✕")} : {count}";
                     using (new ContentColorScope(validate ? Color.green : Color.red))

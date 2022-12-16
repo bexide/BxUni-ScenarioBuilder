@@ -4,10 +4,7 @@ using UnityEditor.IMGUI.Controls;
 namespace BxUni.ScenarioBuilder.EditorInternal
 {
     internal class OpenButtonColumn : MultiColumnHeaderState.Column
-        , IHasColumnIndex
-    {
-        ColumnIndex IHasColumnIndex.Index => ColumnIndex.OpenButton;
-        
+    {     
         internal OpenButtonColumn()
         {
             width                 = 30;

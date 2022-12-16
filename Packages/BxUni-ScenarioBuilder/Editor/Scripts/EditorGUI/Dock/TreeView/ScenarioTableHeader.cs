@@ -4,7 +4,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 {
     internal class ScenarioTableHeader : MultiColumnHeader
     {
-        public ScenarioTableHeader()
+        internal ScenarioTableHeader()
             : this(GetColumns())
         {
 
@@ -16,7 +16,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         }
 
-        static MultiColumnHeaderState.Column[] GetColumns()
+        internal static MultiColumnHeaderState.Column[] GetColumns()
         {
             return new MultiColumnHeaderState.Column[]
             {

@@ -6,10 +6,7 @@ using UnityEditor.IMGUI.Controls;
 namespace BxUni.ScenarioBuilder.EditorInternal
 {
     public class ValidateColumn : MultiColumnHeaderState.Column
-        , IHasColumnIndex
     {
-        ColumnIndex IHasColumnIndex.Index => ColumnIndex.Validate;
-
         internal ValidateColumn()
         {
             width = 30;
