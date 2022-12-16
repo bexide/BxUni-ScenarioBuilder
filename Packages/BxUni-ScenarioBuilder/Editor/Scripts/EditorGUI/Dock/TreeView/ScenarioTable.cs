@@ -10,7 +10,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 {
     internal class ScenarioTable : TreeView
     {
-        const string k_sortedColumnIndexStateKey = "ScenarioEditWindow_sortedColumnIndex";
+        static readonly string k_sortedColumnIndexStateKey = $"{PlayerSettings.productGUID}_sortedColumnIndex";
 
         internal ScenarioTable(TreeViewState state, MultiColumnHeader multiColumnHeader)
             : base(state, multiColumnHeader)
@@ -152,7 +152,24 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         protected override bool DoesItemMatchSearch(TreeViewItem item, string search)
         {
             var scenarioTableItem = (ScenarioTableItem)item;
-            return scenarioTableItem.element.Name.Contains(search);
+
+            search = search.ToLower();
+            string name = scenarioTableItem.element.Name.ToLower();
+
+            if (name.Contains(search))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        protected override void SingleClickedItem(int id)
+        {
+            var item = (ScenarioTableItem)FindItem(id, rootItem);
+            if (item != null)
+            {
+                EditorGUIUtility.PingObject(item.element.ScenarioAsset);
+            }
         }
 
         protected override void DoubleClickedItem(int id)
