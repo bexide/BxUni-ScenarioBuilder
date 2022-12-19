@@ -142,7 +142,7 @@
       },
       "url": "https://packages.unity.com"
     },
-    "jp.co.bexide.scenariobuilder": {
+    "jp.co.bexide.bxuni.scenariobuilder": {
       "version": "file:BxUni-ScenarioBuilder",
       "depth": 0,
       "source": "embedded",
