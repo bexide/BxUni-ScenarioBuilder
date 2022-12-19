@@ -6,7 +6,7 @@ using UnityEditor.IMGUI.Controls;
 
 namespace BxUni.ScenarioBuilder.EditorInternal
 {
-    public class ValidateColumn : MultiColumnHeaderState.Column
+    internal class ValidateColumn : MultiColumnHeaderState.Column
     {
         internal ValidateColumn()
         {

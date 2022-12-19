@@ -1,0 +1,23 @@
+\DoxyHorRuler{0}
+\hypertarget{md__c__home_murakami__b_x_tools__github__bx_uni__scenario_builder__packages__bx_uni__scenario_bu3f6d76beb419751b0b258cab5cc21abe_autotoc_md11}{}\doxysection{Uni\+Task SUPPORT}\label{md__c__home_murakami__b_x_tools__github__bx_uni__scenario_builder__packages__bx_uni__scenario_bu3f6d76beb419751b0b258cab5cc21abe_autotoc_md11}
+本パッケージを導入しているプロジェクトに\+Uni\+Taskを導入することで ~\newline
+ 「\+Command\+Engine\+Director」のコンポーネントで使用している一部メソッド及びイベントが変更されます。 ~\newline
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[SerializeField] CommandEngineDirector m\_director;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//onPostResetTask イベントでカプセル化されるメソッドの戻り値が}}
+\DoxyCodeLine{\textcolor{comment}{//System.Threading.Tasks.Task から}}
+\DoxyCodeLine{\textcolor{comment}{//Cysharp.Threading.Tasks.UniTaskに変更されます。}}
+\DoxyCodeLine{m\_director.onPostResetTask += async () => \{ \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//PlayTask メソッドの返値が}}
+\DoxyCodeLine{\textcolor{comment}{//System.Threading.Tasks.Task から}}
+\DoxyCodeLine{\textcolor{comment}{//Cysharp.Threading.Tasks.UniTaskに変更されます。}}
+\DoxyCodeLine{await m\_director.PlayTask();}
+
+\end{DoxyCode}
+\hypertarget{md__c__home_murakami__b_x_tools__github__bx_uni__scenario_builder__packages__bx_uni__scenario_bu3f6d76beb419751b0b258cab5cc21abe_autotoc_md12}{}\doxysection{依存ライブラリ}\label{md__c__home_murakami__b_x_tools__github__bx_uni__scenario_builder__packages__bx_uni__scenario_bu3f6d76beb419751b0b258cab5cc21abe_autotoc_md12}
+\href{https://github.com/Cysharp/UniTask}{\texttt{ Uni\+Task}} 
