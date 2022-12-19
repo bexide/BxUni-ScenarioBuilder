@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e1239345d8e474183d827065eb3c5e, type: 3}
+  m_Name: UI Control Command Regist Config
+  m_EditorClassIdentifier: 
+  m_commandDrawerGroup:
+  - m_groupName: UI Control
+    m_enabled: 1
+    m_color: {r: 1, g: 0.6273585, b: 0.6273585, a: 0}
+    m_commandDrawers:
+    - m_viewName: "\u30C6\u30AD\u30B9\u30C8\u30DC\u30C3\u30AF\u30B9\u8A2D\u5B9A"
+      m_icon: {fileID: 0}
+      m_script: {fileID: 11500000, guid: 77dc7ebf4e106bf4bba36bccae04cbcb, type: 3}
+      m_tooltip: "\u30C6\u30AD\u30B9\u30C8\u30DC\u30C3\u30AF\u30B9\u5185\u306E\u8A71\u8005\u540D\u3068\u30C6\u30AD\u30B9\u30C8\u3092\u8A2D\u5B9A\u3057\u307E\u3059\u3002"

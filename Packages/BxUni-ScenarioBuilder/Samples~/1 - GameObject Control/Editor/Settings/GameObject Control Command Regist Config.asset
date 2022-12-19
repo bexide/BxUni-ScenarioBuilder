@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e1239345d8e474183d827065eb3c5e, type: 3}
+  m_Name: GameObject Control Command Regist Config
+  m_EditorClassIdentifier: 
+  m_commandDrawerGroup:
+  - m_groupName: GameObject Control
+    m_color: {r: 1, g: 0.32503578, b: 0.19339621, a: 0}
+    m_commandDrawers:
+    - m_viewName: "\u30D7\u30EA\u30DF\u30C6\u30A3\u30D6\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u751F\u6210"
+      m_icon: {fileID: 0}
+      m_script: {fileID: 11500000, guid: dc72492f4b61ca4448ae97c33b834634, type: 3}
+      m_tooltip: "\u30D7\u30EA\u30DF\u30C6\u30A3\u30D6\u306A\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u3092\u751F\u6210\u3057\u307E\u3059\u3002"
+    - m_viewName: "\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u4F4D\u7F6E\u6307\u5B9A"
+      m_icon: {fileID: 0}
+      m_script: {fileID: 11500000, guid: 732d096380f71784a81952ac7e037a75, type: 3}
+      m_tooltip: "\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u306E\u4F4D\u7F6E\u3092\u6307\u5B9A\u3057\u307E\u3059\u3002"
+    - m_viewName: "\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u56DE\u8EE2\u6307\u5B9A"
+      m_icon: {fileID: 0}
+      m_script: {fileID: 11500000, guid: 35a706655e8ea314594f51b35f09f6bf, type: 3}
+      m_tooltip: "\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u306E\u56DE\u8EE2\u3092\u6307\u5B9A\u3057\u307E\u3059\u3002"
+    - m_viewName: "\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u30B5\u30A4\u30BA\u6307\u5B9A"
+      m_icon: {fileID: 0}
+      m_script: {fileID: 11500000, guid: 47175b43397c228489b7b0270a0e5646, type: 3}
+      m_tooltip: "\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u306E\u30B5\u30A4\u30BA\u3092\u6307\u5B9A\u3057\u307E\u3059\u3002"

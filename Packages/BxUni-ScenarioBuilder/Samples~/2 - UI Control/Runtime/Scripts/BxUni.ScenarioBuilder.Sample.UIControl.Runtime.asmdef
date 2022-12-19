@@ -1,0 +1,16 @@
+{
+    "name": "BxUni.ScenarioBuilder.Sample.UIControl.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6600a55e097ada8448f7b8ad8affc813"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

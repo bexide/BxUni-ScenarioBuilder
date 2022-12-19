@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838a300e457975f4b8347632e37a6e78, type: 3}
+  m_Name: GameObject Control Demo
+  m_EditorClassIdentifier: 
+  m_commands:
+  - rid: 6616396019191250944
+  - rid: 6616396019191250945
+  - rid: 6616396019191250946
+  - rid: 6616396019191250947
+  references:
+    version: 2
+    RefIds:
+    - rid: 6616396019191250944
+      type: {class: PrimitiveGameObjectSpawnCommand, ns: BxUni.ScenarioBuilder.Sample.GameObjectControl, asm: BxUni.ScenarioBuilder.Sample.GameObjectControl.Runtime}
+      data:
+        m_id: Sphere_0
+        m_primitiveType: 0
+    - rid: 6616396019191250945
+      type: {class: SetPositionCommand, ns: BxUni.ScenarioBuilder.Sample.GameObjectControl, asm: BxUni.ScenarioBuilder.Sample.GameObjectControl.Runtime}
+      data:
+        m_id: Sphere_0
+        m_position: {x: 0, y: 2, z: 0}
+    - rid: 6616396019191250946
+      type: {class: SetRotationCommand, ns: BxUni.ScenarioBuilder.Sample.GameObjectControl, asm: BxUni.ScenarioBuilder.Sample.GameObjectControl.Runtime}
+      data:
+        m_id: Sphere_0
+        m_rotation: {x: 0, y: 0, z: -45}
+    - rid: 6616396019191250947
+      type: {class: SetScaleCommand, ns: BxUni.ScenarioBuilder.Sample.GameObjectControl, asm: BxUni.ScenarioBuilder.Sample.GameObjectControl.Runtime}
+      data:
+        m_id: Sphere_0
+        m_scale: {x: 1, y: 2, z: 1}
