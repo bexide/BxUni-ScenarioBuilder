@@ -1,10 +1,13 @@
+//BeXide 2022-12-12
+//by MurakamiKazuki
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
-using System;
 
 namespace BxUni.ScenarioBuilder.EditorInternal
 {

@@ -1,3 +1,6 @@
+//BeXide 2022-12-12
+//by MurakamiKazuki
+
 using System;
 using System.IO;
 using UnityEditor;

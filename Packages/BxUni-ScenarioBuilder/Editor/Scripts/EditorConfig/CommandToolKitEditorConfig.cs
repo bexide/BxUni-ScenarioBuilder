@@ -1,5 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+//BeXide 2022-11-29
+//by MurakamiKazuki
+
 using System.Linq;
 using System.Text;
 using UnityEngine;

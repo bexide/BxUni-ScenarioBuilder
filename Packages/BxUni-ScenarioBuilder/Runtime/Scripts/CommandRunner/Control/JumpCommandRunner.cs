@@ -1,3 +1,5 @@
+//BeXide 2022-12-05
+//by MurakamiKazuki
 
 namespace BxUni.ScenarioBuilder 
 {

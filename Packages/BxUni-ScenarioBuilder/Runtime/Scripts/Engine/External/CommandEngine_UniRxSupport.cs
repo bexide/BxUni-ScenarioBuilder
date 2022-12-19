@@ -1,3 +1,6 @@
+//BeXide 2022-12-14
+//by MurakamiKazuki
+
 //UniRxが使用出来る場合
 
 #if SCENARIOBUILDER_UNIRX_SUPPORT

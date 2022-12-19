@@ -1,5 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+//BeXide 2022-12-05
+//by MurakamiKazuki
+
 using UnityEngine;
 
 namespace BxUni.ScenarioBuilder.EditorInternal

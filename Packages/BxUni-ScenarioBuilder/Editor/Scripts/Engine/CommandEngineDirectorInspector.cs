@@ -1,8 +1,10 @@
+//BeXide 2022-11-29
+//by MurakamiKazuki
+
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using BxUni.ScenarioBuilderInternal;
-using BxUni.ScenarioBuilder.Editor;
 
 namespace BxUni.ScenarioBuilder.EditorInternal
 {

@@ -1,7 +1,8 @@
+//BeXide 2022-11-29
+//by MurakamiKazuki
+
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using BxUni.ScenarioBuilder.Editor;
