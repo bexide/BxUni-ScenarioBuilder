@@ -11,3 +11,8 @@ Unity2021.3以降
 
 ## ライセンス
 [LICENSE](Packages/BxUni-ScenarioBuilder/LICENSE.md)
+
+## お問い合わせ先
+不明点や不具合の報告は以下からお願い致します。
+- [issue](https://github.com/bexide/BxUni-ScenarioBuilder/issues)  
+- mail: teckinfo@bexide.co.jp  
