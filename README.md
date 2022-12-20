@@ -18,7 +18,7 @@ PackageManagerからインストールすることが出来ます。
 
 ### git URL経由でのインストールの場合
 * Package Manager ウィンドウから「Add package from git URL...」を選択  
-* Add package from git URLの欄に** https://github.com/bexide/BxUni-ScenarioBuilder.git?path=Packages/BxUni-ScenarioBuilder **を入力  
+* Add package from git URLの欄に https://github.com/bexide/BxUni-ScenarioBuilder.git?path=Packages/BxUni-ScenarioBuilder を入力  
 
 ## 使用方法
 [BxUni Scenario Builder](./Packages/BxUni-ScenarioBuilder/Documents~/index.md)
