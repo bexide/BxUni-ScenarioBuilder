@@ -6,6 +6,20 @@
 ## Unityバージョン
 Unity2021.3以降
 
+## インストール
+PackageManagerからインストールすることが出来ます。
+
+### OpenUPM経由でのインストールの場合
+* Project Settings内のPackage Manager → Scoped Registries に以下を登録  
+    * URL: https://package.openupm.com  
+    * Scope: jp.co.bexide  
+* Package Manager ウィンドウから以下を選択してInstall  
+    * BxUni-ScenarioBuilder  
+
+### git URL経由でのインストールの場合
+* Package Manager ウィンドウから「Add package from git URL...」を選択  
+* Add package from git URLの欄に** https://github.com/bexide/BxUni-ScenarioBuilder.git?path=Packages/BxUni-ScenarioBuilder **を入力  
+
 ## 使用方法
 [BxUni Scenario Builder](./Packages/BxUni-ScenarioBuilder/Documents~/index.md)
 
