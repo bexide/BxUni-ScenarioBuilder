@@ -12,7 +12,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
     /// </summary>
     internal class InitializeArea
     {
-        static readonly string k_searchStringStateKey = $"{PlayerSettings.productGUID}_searchStringState";
+        static string s_searchStringStateKey;
 
         SearchField m_searchField;
         ScenarioTable m_table;
@@ -22,9 +22,14 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             var state = new TreeViewState();
             var header = new ScenarioTableHeader();
 
+            if (string.IsNullOrEmpty(s_searchStringStateKey))
+            {
+                s_searchStringStateKey = $"{PlayerSettings.productGUID}_searchStringState";
+            }
+
             m_table = new ScenarioTable(state, header)
             {
-                searchString = SessionState.GetString(k_searchStringStateKey, string.Empty)
+                searchString = SessionState.GetString(s_searchStringStateKey, string.Empty)
             };
 
             m_searchField = new SearchField();
@@ -52,7 +57,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                         string search = m_searchField.OnToolbarGUI(m_table.searchString);
                         if (checkScope.changed)
                         {
-                            SessionState.SetString(k_searchStringStateKey, search);
+                            SessionState.SetString(s_searchStringStateKey, search);
                             m_table.searchString = search;
                         }
                     }
@@ -83,12 +88,11 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             else //Project内にScenarioが1つもない時
             {
                 using var h1 = new HorizontalCenterScope();
-                using (var v1 = new VerticalCenterScope())
+                using var v1 = new VerticalCenterScope();
+                
+                if (GUILayout.Button("新規作成", GUILayout.MinWidth(200)))
                 {
-                    if (GUILayout.Button("新規作成", GUILayout.Width(200)))
-                    {
-                        ScenarioBuilderEditUtility.CreateAsset();
-                    }
+                    ScenarioBuilderEditUtility.CreateAsset();
                 }
             }
 
