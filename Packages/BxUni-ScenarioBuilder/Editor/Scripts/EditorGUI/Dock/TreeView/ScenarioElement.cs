@@ -10,11 +10,13 @@ namespace BxUni.ScenarioBuilder.EditorInternal
     [Serializable]
     internal class ScenarioElement
     {
-        internal ScenarioData ScenarioAsset { get; }
-        internal string Name { get; }
-        internal string Path { get; }
-        internal long Bytes { get; }
+        internal ScenarioData   ScenarioAsset { get; }
+        internal string         Name { get; }
+        internal string         Path { get; }
+        internal long           Bytes { get; }
+        internal string         BytesToString { get; }
         internal DateTimeOffset LastWriteTime { get; }
+        internal int            ValidateCount { get; }
 
         internal ScenarioElement(string path)
         {
@@ -22,17 +24,17 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             var info = new FileInfo(path);
 
             ScenarioAsset = data;
-            Name     = data.name;
-            Path     = path;
-            Bytes    = info.Length;
+            Name          = data.name;
+            Path          = path;
+            Bytes         = info.Length;
+            BytesToString = DownloadSizeToString(info.Length);
             LastWriteTime = info.LastWriteTime.ToLocalTime();
+            ValidateCount = GetValidateCount();
         }
 
-        internal string DownloadSizeToString()
+        string DownloadSizeToString(long bytes)
         {
-            long downloadSize = Bytes;
-
-            double kiloBytes = (double)downloadSize / 1024;
+            double kiloBytes = (double)bytes / 1024;
             double megaBytes = kiloBytes / 1024;
 
             if (megaBytes >= 1)
@@ -52,11 +54,11 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             }
             else
             {
-                return $"{downloadSize}B";
+                return $"{bytes}B";
             }
         }
 
-        internal (bool validate, int count) GetValidateCount()
+        int GetValidateCount()
         {
             int count = 0;
             foreach(var cmd in ScenarioAsset.Commands)
@@ -66,9 +68,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                     count++;
                 }
             }
-
-            bool validate = count == 0;
-            return (validate, count);
+            return count;
         }
     }
 }
