@@ -53,7 +53,9 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 var commandsProp = so.FindProperty("m_commands");
                 for(int i=0; i<selectedIndicators.Count; i++)
                 {
-                    var   prop   = commandsProp.GetArrayElementAtIndex(i);
+                    int index = selectedIndicators.ElementAtOrDefault(i);
+
+                    var   prop   = commandsProp.GetArrayElementAtIndex(index);
                     float height = EditorGUI.GetPropertyHeight(prop);
 
                     totalHeight += height;
@@ -63,7 +65,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                         continue;
                     }
 
-                    var command = scenario.Commands[i];
+                    var command = scenario.Commands[index];
                     var drawer = command.FindDrawer();
                     DrawLayoutElement(command, prop, drawer);
                 }
