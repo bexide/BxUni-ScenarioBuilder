@@ -61,7 +61,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             case OpenButtonColumn:
                 break;
             case ValidateColumn:
-                orderedEnumerable = items.OrderBy(item => item.element.GetValidateCount().count);
+                orderedEnumerable = items.OrderBy(item => item.element.ValidateCount);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(columnIndex), columnIndex, null);
@@ -126,7 +126,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                     EditorGUI.LabelField(rect, item.element.Path, labelStyle);
                     break;
                 case BytesColumn:
-                    EditorGUI.LabelField(rect, $"{item.element.DownloadSizeToString()}", labelStyle);
+                    EditorGUI.LabelField(rect, item.element.BytesToString, labelStyle);
                     break;
                 case LastTimeColumn:
                     EditorGUI.LabelField(rect, $"{item.element.LastWriteTime:yyyy/MM/dd HH:mm:ss}");
@@ -139,8 +139,9 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                     }
                     break;
                 case ValidateColumn:
-                    (bool validate, int count) = item.element.GetValidateCount();
-                    string label = $"{(validate ? "✔" : "✕")} : {count}";
+                    int    count     = item.element.ValidateCount;
+                    bool   validate  = count == 0;
+                    string label     = $"{(validate ? "✔" : "✕")} : {count}";
                     using (new ContentColorScope(validate ? Color.green : Color.red))
                     {
                         EditorGUI.LabelField(rect, label, labelStyle);
