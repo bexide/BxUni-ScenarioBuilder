@@ -30,6 +30,8 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         GUIStyle m_buttonStyle;
 
+        Rect m_latestRect = new Rect();
+
         #endregion
 
         internal void DrawLayout(ScenarioData data, SerializedObject so)
@@ -49,6 +51,13 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
             #region ReorderableList_Callbacks
 
+            bool IsRangeOver(Rect rect)
+            {
+                float min = m_scrollPos.y + 4;
+                float max = min + m_latestRect.yMax;
+                return rect.yMax <= min || max < rect.yMax;
+            }
+
             void DrawHeader(Rect rect)
             {
                 GUI.Label(rect, data.name);
@@ -57,6 +66,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             void DrawElement(Rect rect, int index, bool isActive, bool isFocused)
             {
                 if (index < 0 || data.Commands.Count <= index) { return; }
+                if (IsRangeOver(rect)) { return; }
 
                 var elementRect = new Rect(rect)
                 {
@@ -170,6 +180,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             void DrawElementBackground(Rect rect, int index, bool isActive, bool isFocused)
             {            
                 if(index < 0 || data.Commands.Count <= index) { return; }
+                if (IsRangeOver(rect)) { return; }
 
                 var command = data.Commands[index];
                 var drawer  = command.FindDrawer();
@@ -246,16 +257,19 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             }
 
             //枠を表示
-            var reorderableListRect = GUILayoutUtility.GetLastRect();
-            HandleDrawUtility.DrawRectBox(reorderableListRect, Color.white);
+            if(Event.current.type == EventType.Repaint)
+            {
+                m_latestRect = GUILayoutUtility.GetLastRect();
+            }
+            HandleDrawUtility.DrawRectBox(m_latestRect, Color.white);
 
             float totalHeight = 0f;
             var labelRects = Enumerable.Range(0, List.count)
                 .Select(index =>
                 {
-                    var rect = new Rect(reorderableListRect)
+                    var rect = new Rect(m_latestRect)
                     {
-                        yMin   = -m_scrollPos.y + reorderableListRect.y + List.headerHeight + 1 + totalHeight,
+                        yMin   = -m_scrollPos.y + m_latestRect.y + List.headerHeight + 1 + totalHeight,
                         height = ElementHeight(index) + 2,
                     };
 
@@ -276,7 +290,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 drawer.DrawLabel(mousePos);
 
                 //挿入位置に線を引く
-                if (reorderableListRect.Contains(mousePos) && labelRects.Any())
+                if (m_latestRect.Contains(mousePos) && labelRects.Any())
                 {
                     for (int i = 0; i < labelRects.Length; i++)
                     {
@@ -297,14 +311,14 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                         HandleDrawUtility.DrawRectBox(rect, drawer.FindDrawerGroupColor());
                     }
 
-                    EditorGUIUtility.AddCursorRect(reorderableListRect, MouseCursor.Pan);
+                    EditorGUIUtility.AddCursorRect(m_latestRect, MouseCursor.Pan);
                 }
             }
             
             //挿入
             if (ev.type == EventType.MouseUp)
             {
-                if(reorderableListRect.Contains(mousePos) && newCommand != null)
+                if(m_latestRect.Contains(mousePos) && newCommand != null)
                 {
                     int insertIndex = 0;
                     for(int i=0; i<labelRects.Length; i++)
@@ -319,7 +333,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             }
 
             //右クリックでSubMenu表示
-            if (reorderableListRect.Contains(mousePos) && ev.RightMouseDown())
+            if (m_latestRect.Contains(mousePos) && ev.RightMouseDown())
             {
                 var menu = new SubMenu();
                 var selectedCommands = List.selectedIndices
@@ -356,7 +370,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             }
 
             //ステートが並んでいない箇所での左クリックで選択をクリア
-            var emptyRect = new Rect(reorderableListRect);
+            var emptyRect = new Rect(m_latestRect);
             if (labelRects.Any())
             {
                 emptyRect.yMin = labelRects.Max(x => x.yMax);
@@ -366,7 +380,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 List.ClearSelection();
             }
 
-            ResizeWidth.Calculate(reorderableListRect);
+            ResizeWidth.Calculate(m_latestRect);
         }
 
         GUIStyle GetButtonStyle()
