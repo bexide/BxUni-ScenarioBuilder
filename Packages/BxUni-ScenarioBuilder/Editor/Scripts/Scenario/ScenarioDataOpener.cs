@@ -5,7 +5,7 @@ using UnityEditor.Callbacks;
 
 namespace BxUni.ScenarioBuilder.EditorInternal
 {
-    public class ScenarioDataOpener
+    internal class ScenarioDataOpener
     {
         /// <summary>
         /// 該当のシナリオファイルをダブルクリックで開けるようにする
