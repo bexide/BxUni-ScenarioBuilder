@@ -109,6 +109,12 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             Repaint();
         }
 
+        private void Update()
+        {
+            InspectorArea.WindowsSize =
+                FlowEditArea.GetLatestDrawRect();
+        }
+
         void OnEnable()
         {
             Initialize();

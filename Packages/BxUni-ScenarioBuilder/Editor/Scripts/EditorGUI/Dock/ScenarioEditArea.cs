@@ -34,6 +34,11 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         #endregion
 
+        internal Rect GetLatestDrawRect()
+        {
+            return m_latestRect;
+        }
+
         internal void DrawLayout(ScenarioData data, SerializedObject so)
         {
             var window = ScenarioEditFlowWindow.Instance;

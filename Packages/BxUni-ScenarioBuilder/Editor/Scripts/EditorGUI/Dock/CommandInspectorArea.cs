@@ -21,11 +21,15 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         Rect m_latestRect = new Rect();
 
+        public Rect WindowsSize { get; set; }
         #endregion
 
         internal void DrawLayout(ScenarioData scenario, SerializedObject so, IReadOnlyCollection<int> selectedIndicators)
         {
-            using (var scroll = new GUILayout.ScrollViewScope(m_scrollPos, GUI.skin.box))
+            using (var scroll = new GUILayout.ScrollViewScope(
+                m_scrollPos,
+                GUI.skin.box,
+                GUILayout.MinHeight(WindowsSize.height)))
             {
                 m_scrollPos = scroll.scrollPosition;
                 DrawLayoutImpl(scenario, so, selectedIndicators);
@@ -37,8 +41,12 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 if (rect != Rect.zero)
                 {
                     m_latestRect = rect;
+                    m_latestRect.yMin = WindowsSize.yMin;
+                    m_latestRect.yMax = WindowsSize.yMax;
                 }
             }
+
+            HandleDrawUtility.DrawRectBox(m_latestRect, Color.white);
         }
 
         void DrawLayoutImpl(ScenarioData scenario, SerializedObject so, IReadOnlyCollection<int> selectedIndicators)
@@ -49,25 +57,36 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             }
             else
             {
-                float totalHeight = 0f;
+                var elementRect = new Rect()
+                {
+                    x      = m_latestRect.x,
+                    width  = m_latestRect.width,
+                    y      = m_latestRect.y,
+                    height = 0,
+                };
+                var drawRect = new Rect(m_latestRect)
+                {
+                    y = m_latestRect.y + m_scrollPos.y
+                };
                 var commandsProp = so.FindProperty("m_commands");
                 for(int i=0; i<selectedIndicators.Count; i++)
                 {
+                    elementRect.y += elementRect.height;
+
                     int index = selectedIndicators.ElementAtOrDefault(i);
 
                     var   prop   = commandsProp.GetArrayElementAtIndex(index);
-                    float height = EditorGUI.GetPropertyHeight(prop);
+                    elementRect.height = EditorGUI.GetPropertyHeight(prop);
 
-                    totalHeight += height;
-                    if (IsRangeOver(totalHeight))
+                    if (!drawRect.Overlaps(elementRect, true))
                     {
-                        GUILayout.Space(height);
+                        GUILayout.Space(elementRect.height);
                         continue;
                     }
 
                     var command = scenario.Commands[index];
                     var drawer = command.FindDrawer();
-                    DrawLayoutElement(command, prop, drawer);
+                    _ = DrawLayoutElement(command, prop, drawer);
                 }
             }
         }
@@ -100,15 +119,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             rect.y      = rect.yMax + 1;
             rect.height = 1;
             HandleDrawUtility.DrawRectBox(rect, Color.white);
-
             return rect;
-        }
-    
-        bool IsRangeOver(float yMax)
-        {
-            float min = m_scrollPos.y;
-            float max = min + m_latestRect.yMax;
-            return yMax <= min || max < yMax;
         }
     }
 }
