@@ -41,7 +41,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         #region Menu Function
 
-        [ScenarioBuilderEditorMenuItem("File/New Scenario", 99999999)]
+        [ScenarioBuilderEditorMenuItem("File/New Scenario", 99999998)]
         internal static void CreateAsset()
         {
             //最後に開いたファイルのディレクトリパスを取得
@@ -70,7 +70,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             EditorPrefs.SetString(k_saveDirectoryPathKey, saveDirectoryPath);
         }
 
-        [ScenarioBuilderEditorMenuItem("File/Save Scenario", 99999998)]
+        [ScenarioBuilderEditorMenuItem("File/Save Scenario", 99999997)]
         internal static void SaveAsset()
         {
             var currentScenario = ScenarioEditFlowWindow.Instance.CurrentEditData;
@@ -79,8 +79,8 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 AssetDatabase.SaveAssetIfDirty(currentScenario);
             }
         }
-        
-        [ScenarioBuilderEditorMenuItem("File/Save As Scenario", 99999998)]
+
+        [ScenarioBuilderEditorMenuItem("File/Save As Scenario", 99999997)]
         internal static void SaveAsAsset()
         {
             var currentScenario = ScenarioEditFlowWindow.Instance.CurrentEditData;
@@ -229,6 +229,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         }
 
         [ScenarioBuilderEditorMenuItem("File/To Home", 19999999)]
+        [ScenarioBuilderEditorMenuItemIcon(nameof(EditorGUIIcons.PrevIconTex), 99999999)]
         internal static void ToHome()
         {
             ScenarioEditFlowWindow.CreateWindow(null);

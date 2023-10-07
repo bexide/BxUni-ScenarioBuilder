@@ -51,6 +51,29 @@ namespace BxUni.ScenarioBuilder.EditorInternal
         internal static readonly GUIContent ErrorIconTex
             = Create("console.erroricon");
 
+        internal static readonly GUIContent PrevIconTex
+            = Create("d_Profiler.PrevFrame");
+
+        /// <summary>
+        /// アイコンの名前でGUIContentを取得
+        /// </summary>
+        /// <param name="iconName">アイコン名</param>
+        /// <returns></returns>
+        internal static GUIContent GetIcon(string iconName)
+        {
+            return iconName switch
+            {
+                nameof(DuplicateButtonTex) => DuplicateButtonTex,
+                nameof(RemoveButtonTex)    => RemoveButtonTex,
+                nameof(HelpIconTex)        => HelpIconTex,
+                nameof(DefaultCommandIcon) => DefaultCommandIcon,
+                nameof(OpenButtonTex)      => OpenButtonTex,
+                nameof(ErrorIconTex)       => ErrorIconTex,
+                nameof(PrevIconTex)        => PrevIconTex,
+                _                          => null
+            };
+        }
+
         static GUIContent Create(string name, string tooltip = "")
         {
             var icon = EditorGUIUtility.IconContent(name);

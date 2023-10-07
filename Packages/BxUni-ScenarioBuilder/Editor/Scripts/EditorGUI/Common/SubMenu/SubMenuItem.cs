@@ -27,6 +27,13 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             Content  = new GUIContent(name);
         }
 
+        internal SubMenuItem(GUIContent content, Action callback, int priority = 0)
+        {
+            Callback = callback;
+            Priority = priority;
+            Content  = content;
+        }
+
         internal bool IsSeparator()
         {
             return string.IsNullOrEmpty(MenuName);
