@@ -148,7 +148,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 {
                     if (DrawIconButton(kvp.Value[0].Content, out float width))
                     {
-                        kvp.Value[0].Invoke(true);
+                        kvp.Value[0].Invoke();
                     }
                     rect.x += width;
                     continue;
