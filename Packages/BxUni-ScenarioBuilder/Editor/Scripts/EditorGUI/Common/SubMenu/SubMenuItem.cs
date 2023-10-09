@@ -39,13 +39,12 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             return string.IsNullOrEmpty(MenuName);
         }
 
-        internal void Invoke()
+        internal void Invoke(bool isIcon = false)
         {
-            if (IsSeparator()) { return; }
+            if (IsSeparator() && !isIcon) { return; }
 
             Debug.Assert(Callback != null, "Callback not configured...");
             Callback?.Invoke();
         }
-
     }
 }

@@ -37,7 +37,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 }
                 else
                 {
-                    m_menu.AddItem(item.Content, false, item.Invoke);
+                    m_menu.AddItem(item.Content, false, () => item.Invoke());
                 }
             }
 
