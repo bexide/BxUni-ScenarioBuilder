@@ -6,6 +6,12 @@ using UnityEngine;
 
 namespace BxUni.ScenarioBuilder.EditorInternal
 {
+    internal enum SubMenuType
+    {
+        Normal,
+        Icon
+    }
+
     internal class SubMenuItem
     {
         #region property
@@ -18,6 +24,8 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         Action Callback { get; }
 
+        SubMenuType Type { get; }
+
         #endregion
 
         internal SubMenuItem(string name, Action callback, int priority = 0)
@@ -25,6 +33,15 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             Callback = callback;
             Priority = priority;
             Content  = new GUIContent(name);
+            Type = SubMenuType.Normal;
+        }
+
+        internal SubMenuItem(GUIContent content, Action callback, int priority = 0)
+        {
+            Callback = callback;
+            Priority = priority;
+            Content  = content;
+            Type = SubMenuType.Icon;
         }
 
         internal bool IsSeparator()
@@ -34,11 +51,10 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         internal void Invoke()
         {
-            if (IsSeparator()) { return; }
+            if (IsSeparator() && Type == SubMenuType.Normal) { return; }
 
             Debug.Assert(Callback != null, "Callback not configured...");
             Callback?.Invoke();
         }
-
     }
 }

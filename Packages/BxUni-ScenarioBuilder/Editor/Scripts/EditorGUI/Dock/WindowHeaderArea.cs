@@ -68,6 +68,29 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 {
                     Debug.LogException(ex);
                 }
+
+                try
+                {
+                    if (!ScenarioBuilderInternal.AttributeUtility
+                            .TryGetMethodAttribute<Editor.ScenarioBuilderEditorMenuItemIconAttribute>(method, out var iconAttr))
+                        continue;
+
+                    var content = EditorGUIIcons.GetIcon(iconAttr.MenuItemIconName);
+
+                    var subMenuItemIcon = new SubMenuItem(content, () => method?.Invoke(null, null), iconAttr.Priority);
+
+                    if (!menuTable.ContainsKey(method.Name))
+                    {
+                        menuTable.Add(method.Name, new List<SubMenuItem>(1)
+                        {
+                            subMenuItemIcon
+                        });
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogException(ex);
+                }
             }
 
             try
@@ -75,6 +98,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 foreach (var kvp in menuTable)
                 {
                     var list = kvp.Value;
+                    if(list.Count <= 1) continue;
                     list = list.OrderByDescending(x => x.Priority)
                         .ThenBy(x => x.MenuName)
                         .ToList();
@@ -107,12 +131,28 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 );
             }
 
+            static bool DrawIconButton(GUIContent content, out float squareWidth)
+            {
+                squareWidth = EditorStyles.toolbarButton.fixedHeight;
+                return GUILayout.Button(content, EditorStyles.toolbarButton,
+                    GUILayout.Width(squareWidth));
+            }
+
             using var _ = new EditorGUILayout.HorizontalScope(EditorStyles.toolbar);
 
             var rect = new Rect(0, EditorGUIUtility.singleLineHeight, 1, 1);
 
             foreach(var kvp in m_menuTable)
             {
+                if (kvp.Value.Count == 1)
+                {
+                    if (DrawIconButton(kvp.Value[0].Content, out float width))
+                    {
+                        kvp.Value[0].Invoke();
+                    }
+                    rect.x += width;
+                    continue;
+                }
                 if(DrawLayoutButton(kvp.Key))
                 {
                     m_subMenu
