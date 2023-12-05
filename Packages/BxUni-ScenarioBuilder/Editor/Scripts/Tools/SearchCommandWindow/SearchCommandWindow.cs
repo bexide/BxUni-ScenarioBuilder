@@ -15,6 +15,13 @@ namespace BxUni.ScenarioBuilder.EditorInternal
     /// </summary>
     internal class SearchCommandWindow : EditorWindow
     {
+        class LogEntry
+        {
+            public ScenarioData Scenario { get; set; }
+
+            public string[] Logs { get; set; }
+        }
+
         GUIStyle m_labelStyle;
         MonoScript m_cacheMonoScript = null;
         Vector2 m_scroll;
@@ -65,25 +72,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 Check(targetType);
             }
 
-            if (m_logEntlies.Count == 0) { return; }
-
-            using (var scroll = new EditorGUILayout.ScrollViewScope(m_scroll))
-            {
-                m_labelStyle = new GUIStyle()
-                {
-                    richText = true,
-                };
-
-                foreach (var logEntry in m_logEntlies)
-                {
-                    EditorGUILayout.ObjectField(logEntry.Scenario, typeof(ScenarioData), false);
-                    foreach (string log in logEntry.Logs)
-                    {
-                        EditorGUILayout.SelectableLabel(log, m_labelStyle);
-                    }
-                }
-                m_scroll = scroll.scrollPosition;
-            }
+            DrawLogEntries();
         }
 
         void Check(System.Type targetType)
@@ -117,11 +106,30 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         }
 
-        class LogEntry
+        void DrawLogEntries()
         {
-            public ScenarioData Scenario { get; set; }
+            if (m_logEntlies.Count == 0) { return; }
 
-            public string[] Logs { get; set; }
+            m_labelStyle = new GUIStyle()
+            {
+                richText = true,
+            };
+
+            using var scroll = new EditorGUILayout.ScrollViewScope(m_scroll);
+            using var _ = new EditorGUI.IndentLevelScope(1);
+
+            foreach (var logEntry in m_logEntlies)
+            {
+                EditorGUILayout.ObjectField(logEntry.Scenario, typeof(ScenarioData), false);
+
+                using var __ = new EditorGUI.IndentLevelScope(1);
+                foreach (string log in logEntry.Logs)
+                {
+                    EditorGUILayout.SelectableLabel(log, m_labelStyle);
+                }
+            }
+            m_scroll = scroll.scrollPosition;
         }
+
     }
 }
