@@ -146,12 +146,16 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             {
                 if (kvp.Value.Count == 1)
                 {
-                    if (DrawIconButton(kvp.Value[0].Content, out float width))
+                    var subMenu = kvp.Value[0];
+                    if(subMenu.Type == SubMenuType.Icon)
                     {
-                        kvp.Value[0].Invoke();
+                        if (DrawIconButton(subMenu.Content, out float width))
+                        {
+                            subMenu.Invoke();
+                        }
+                        rect.x += width;
+                        continue;
                     }
-                    rect.x += width;
-                    continue;
                 }
                 if(DrawLayoutButton(kvp.Key))
                 {

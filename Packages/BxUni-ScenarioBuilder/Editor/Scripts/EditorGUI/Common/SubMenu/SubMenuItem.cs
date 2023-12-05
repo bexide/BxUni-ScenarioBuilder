@@ -22,9 +22,9 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
         internal int Priority { get; }
 
-        Action Callback { get; }
+        internal SubMenuType Type { get; }
 
-        SubMenuType Type { get; }
+        Action Callback { get; }
 
         #endregion
 

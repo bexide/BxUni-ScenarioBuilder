@@ -37,7 +37,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             }
             catch
             {
-                name = "None (MonoScript)";
+                name = string.Empty;
             }
 
             //選択時
@@ -52,18 +52,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 so.ApplyModifiedProperties();
             }
 
-            var style = new GUIStyle(EditorStyles.popup)
-            {
-                fontStyle = FontStyle.Bold
-            };
-
-            if (GUI.Button(rect, name, style))
-            {
-                var dropdown = new MonoScriptSelectDropdown(OnSelected);
-                dropdown.Show(rect);
-            }
+            MonoScriptSelectDropdownDrawer.Draw(rect, name, OnSelected);
         }
-
-
     }
 }
