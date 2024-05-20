@@ -70,7 +70,7 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                 if(!ev.LeftMouseDown()) { return; }
 
                 var classType = GetClassType();
-                if(classType?.BaseType == typeof(BaseCommand))
+                if(typeof(BaseCommand).IsAssignableFrom(classType))
                 {
                     CreateInstanceFunc = 
                         () => CreateBaseCommandInstanceFuncImpl(classType);

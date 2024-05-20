@@ -1,4 +1,8 @@
 # CHANGELOG
+## Unreleased
+[Fixed]
+- BaseCommandを継承したクラスをさらに継承したコマンドがEditorWindow上で設定できない問題の修正
+
 ## [v1.0.4] (2023/09/14)
 [Fixed]
 ・Editorウィンドウの軽微な不具合修正
