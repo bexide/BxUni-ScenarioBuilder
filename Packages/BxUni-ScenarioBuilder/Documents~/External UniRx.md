@@ -7,6 +7,8 @@
 本パッケージを導入しているプロジェクトにUniRxを導入することで  
 「CommandEngineDirector」のコンポーネントで使用可能なプロパティが増えます。  
 
+※プロジェクト内にUniRxとR3が両方導入されている場合、R3の方の機能が優先されます。
+
 ```csharp
 [SerializeField] CommandEngineDirector m_director;
 

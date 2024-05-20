@@ -1,0 +1,39 @@
+# BxUni Scenario Builder 「External R3」
+
+---
+
+## R3 SUPPORT
+
+本パッケージを導入しているプロジェクトにR3を導入することで  
+「CommandEngineDirector」のコンポーネントで使用可能なプロパティが増えます。  
+
+※プロジェクト内にUniRxとR3が両方導入されている場合、R3の方の機能が優先されます。
+
+```csharp
+[SerializeField] CommandEngineDirector m_director;
+
+m_director.OnStart(_ => 
+{
+    // シナリオ再生時に呼ばれます。
+    // m_director.onStartイベントにコールバックを登録する方法と
+    // 同等の機能となります。
+}).AddTo(this);
+
+m_director.OnEnd(_ => 
+{
+    // シナリオ再生終了時に呼ばれます。
+    // m_director.onEndイベントにコールバックを登録する方法と
+    // 同等の機能となります。
+}).AddTo(this);
+
+m_director.OnResetCompleted(_ => 
+{
+    // シナリオ再生時に呼ばれます。
+    // m_director.onResetCompletedイベントにコールバックを登録する方法と
+    // 同等の機能となります。
+}).AddTo(this);
+
+```
+
+## 依存ライブラリ
+[R3](https://github.com/Cysharp/R3)

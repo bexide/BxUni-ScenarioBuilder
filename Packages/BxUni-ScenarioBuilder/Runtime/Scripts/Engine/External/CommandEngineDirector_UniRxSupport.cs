@@ -1,9 +1,9 @@
 //BeXide 2022-12-14
 //by MurakamiKazuki
 
-//UniRxが使用出来る場合
+//UniRxが使用出来るかつR3が入っていない場合
 
-#if SCENARIOBUILDER_UNIRX_SUPPORT
+#if SCENARIOBUILDER_UNIRX_SUPPORT && !SCENARIOBUILDER_R3_SUPPORT
 using System;
 using UniRx;
 
