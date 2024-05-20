@@ -7,7 +7,7 @@
 [Added]
 - プロジェクト内のシナリオファイルの中から、指定のコマンドが入っているかを検索するウィンドウ「ScenarioCommandWindow」を追加
 - Homeへの期間の簡易化 [#1](https://github.com/bexide/BxUni-ScenarioBuilder/pull/1)
-
+- R3対応
 
 ## [v1.0.4] (2023/09/14)
 [Fixed]
