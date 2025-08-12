@@ -8,7 +8,7 @@ namespace BxUni.ScenarioBuilderInternal
 {
     internal class RunnerData
     {
-        BaseCommandRunner Runner { get; }
+        internal BaseCommandRunner Runner { get; }
         
         MethodInfo RunMethod { get; }
 

@@ -145,6 +145,40 @@ namespace BxUni.ScenarioBuilder
         }
 
         /// <summary>
+        /// 再生中のシナリオから割り込みで別シナリオを再生する
+        /// </summary>
+        /// <param name="insertScenario"></param>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+#if SCENARIOBUILDER_UNITASK_SUPPORT
+        public async UniTask InsertScenarioTask(ScenarioData insertScenario, CancellationToken ct = default)
+#else
+        public async Task InsertScenarioTask(ScenarioData insertScenario, CancellationToken ct = default)
+#endif
+        {
+            // 割り込みで再生するシナリオがnullなら処理しない
+            if (insertScenario == null)
+            {
+                return;
+            }
+
+            // 現在再生しているシナリオで使っているRunnerが無ければ処理しない
+            var commandRunners = Engine.ActiveCommandRunners;
+            if (commandRunners == null || commandRunners.Length == 0) 
+            {
+                return;
+            }
+
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct, Engine.CancellationToken);
+
+            var subroutine = new CommandEngine();
+            subroutine.Initialize(insertScenario, Engine.ActiveCommandRunners);
+            await subroutine.RunTask(cts.Token);
+
+            cts.Cancel();
+        }
+
+        /// <summary>
         /// リセットして最初から再生しなおします。
         /// </summary>
         internal void ResetFlow()

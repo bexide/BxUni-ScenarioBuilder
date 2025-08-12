@@ -27,6 +27,31 @@ namespace BxUni.ScenarioBuilder
         #region Property
 
         /// <summary>
+        /// スキップ時にキャンセルされるトークン
+        /// </summary>
+        public CancellationToken CancellationToken
+        {
+            get => Cancel?.Token ?? CancellationToken.None;
+        }
+
+        /// <summary>
+        /// 現在使われているCommandRunner
+        /// </summary>
+        public BaseCommandRunner[] ActiveCommandRunners
+        {
+            get
+            {
+                var runners = RunnerTable.Values
+                    .Select(data => data.Runner);
+
+                var jumpRunners = JumpRunnerTable.Values
+                    .Select(data => data.Runner);
+
+                return runners.Concat(jumpRunners).ToArray();
+            }
+        }
+
+        /// <summary>
         /// コマンドに対する実行メソッドをまとめたテーブル
         /// </summary>
         Dictionary<Type, RunnerData> RunnerTable { get; set; }
