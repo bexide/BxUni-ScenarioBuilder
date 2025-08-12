@@ -104,7 +104,11 @@ namespace BxUni.ScenarioBuilder
                 scenarioAsset = scenarioData;
             }
 
+#if UNITY_6000_0_OR_NEWER
+            var runners = FindObjectsByType<BaseCommandRunner>(FindObjectsSortMode.None);
+#else
             var runners = FindObjectsOfType<BaseCommandRunner>();
+#endif
             Engine.Initialize(scenarioAsset, runners);
         }
 
