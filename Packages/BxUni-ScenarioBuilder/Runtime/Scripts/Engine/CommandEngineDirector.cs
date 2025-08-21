@@ -128,10 +128,13 @@ namespace BxUni.ScenarioBuilder
         /// <param name="ct">キャンセルトークン</param>
         /// <returns></returns>
 #if SCENARIOBUILDER_UNITASK_SUPPORT
-        public async UniTask PlayTask(CancellationToken ct = default)
+        public async UniTask PlayTask
 #else
-        public async Task PlayTask(CancellationToken ct = default)
+        public async Task PlayTask
 #endif
+        (
+            CancellationToken ct = default
+        )
         {
             await Engine.RunTask(ct);
         }
@@ -151,10 +154,14 @@ namespace BxUni.ScenarioBuilder
         /// <param name="ct"></param>
         /// <returns></returns>
 #if SCENARIOBUILDER_UNITASK_SUPPORT
-        public async UniTask InsertScenarioTask(ScenarioData insertScenario, CancellationToken ct = default)
+        public async UniTask InsertScenarioTask
 #else
-        public async Task InsertScenarioTask(ScenarioData insertScenario, CancellationToken ct = default)
+        public async Task InsertScenarioTask
 #endif
+        (
+            ScenarioData      insertScenario,
+            CancellationToken ct = default
+        )
         {
             // 割り込みで再生するシナリオがnullなら処理しない
             if (insertScenario == null)
@@ -169,7 +176,7 @@ namespace BxUni.ScenarioBuilder
                 return;
             }
 
-            using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct, Engine.CancellationToken);
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct, DestroyCts.Token, Engine.CancellationToken);
 
             var subroutine = new CommandEngine();
             subroutine.Initialize(insertScenario, Engine.ActiveCommandRunners);

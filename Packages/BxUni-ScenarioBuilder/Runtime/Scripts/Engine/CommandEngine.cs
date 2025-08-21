@@ -335,14 +335,13 @@ namespace BxUni.ScenarioBuilder
         }
 
 #if SCENARIOBUILDER_UNITASK_SUPPORT
-        async UniTask<(BaseCommand command, int index)> DoJumpTask(
-            BaseCommand currentCommand, int currentIndex, BaseCommand[] commands, CancellationToken ct
-        )
+        async UniTask<(BaseCommand command, int index)> DoJumpTask
 #else
-        async Task<(BaseCommand command, int index)> DoJumpTask(
+        async Task<(BaseCommand command, int index)> DoJumpTask
+#endif
+        (
             BaseCommand currentCommand, int currentIndex, BaseCommand[] commands, CancellationToken ct
         )
-#endif
 
         {
             //処理するCommandがジャンプ系Commandでなければ今のコマンドのまま
@@ -363,6 +362,11 @@ namespace BxUni.ScenarioBuilder
             bool FindCommand(string targetLabel, out (BaseCommand, int) result)
             {
                 result   = default;
+                if (string.IsNullOrEmpty(targetLabel))
+                {
+                    return false;
+                }
+
                 int size = commands.Length;
                 for(int i=0; i<size; i++)
                 {
