@@ -22,5 +22,9 @@ namespace BxUni.ScenarioBuilder
         /// </summary>
         public string TargetLabel => m_targetLabel;
 
+        protected override string GetDefaultGUIText()
+        {
+            return $"To {TargetLabel}";
+        }
     }
 }

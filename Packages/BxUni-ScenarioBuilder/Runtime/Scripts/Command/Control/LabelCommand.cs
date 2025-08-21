@@ -21,5 +21,10 @@ namespace BxUni.ScenarioBuilder
         /// ラベル名
         /// </summary>
         public string Name => m_name;
+
+        protected override string GetDefaultGUIText()
+        {
+            return $"* {Name}";
+        }
     }
 }

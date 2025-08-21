@@ -15,6 +15,11 @@ namespace BxUni.ScenarioBuilder
             string json = JsonUtility.ToJson(this);
             return (BaseCommand)JsonUtility.FromJson(json, GetType());
         }
+
+        internal string GetDefaultGUITextInternal()
+        {
+            return GetDefaultGUIText();
+        }
 #endif
     }
 }

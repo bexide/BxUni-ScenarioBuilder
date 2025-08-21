@@ -125,6 +125,16 @@ namespace BxUni.ScenarioBuilder.EditorInternal
             }
         }
 
+        string GetDefaultGUIText(BaseCommand command)
+        {
+            string text = command.GetDefaultGUITextInternal();
+            if (string.IsNullOrEmpty(text))
+            {
+                text = $"[{command.FindDrawer().m_viewName}]";
+            }
+            return text;
+        }
+
         #region DrawGUI
 
         internal void DrawIcon(Vector2 pos)
@@ -174,14 +184,14 @@ namespace BxUni.ScenarioBuilder.EditorInternal
                     catch(Exception ex)
                     {
                         Debug.LogException(ex);
-                        EditorGUI.LabelField(rect, $"[{command.FindDrawer().m_viewName}]");
+                        EditorGUI.LabelField(rect, GetDefaultGUIText(command));
                     }
                 }
             }
             //されていない場合
             else
             {
-                EditorGUI.LabelField(rect, $"[{command.FindDrawer().m_viewName}]");
+                EditorGUI.LabelField(rect, GetDefaultGUIText(command));
             }
         }
 
