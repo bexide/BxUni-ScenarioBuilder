@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_commandDrawerGroup:
   - m_groupName: "\u5236\u5FA1\u7CFB\u30B3\u30DE\u30F3\u30C9"
+    m_enabled: 1
     m_color: {r: 0.43921572, g: 0.7137255, b: 0.121568635, a: 1}
     m_commandDrawers:
     - m_viewName: "\u30E9\u30D9\u30EB"
       m_icon: {fileID: 0}
       m_script: {fileID: 11500000, guid: f3ba4277fe96aa84da16210230fb92c3, type: 3}
-      m_tooltip: "\u30B8\u30E3\u30F3\u30D7\u5148\u306E\u30E9\u30D9\u30EB\u3092\u8A2D\u5B9A\u3057\u307E\u3059\u3002"
+      m_tooltip: 
     - m_viewName: "\u30B8\u30E3\u30F3\u30D7"
       m_icon: {fileID: 0}
       m_script: {fileID: 11500000, guid: 51a754e5848b81b4ab5147ef6fe874f6, type: 3}
-      m_tooltip: "\u5BFE\u8C61\u306E\u30E9\u30D9\u30EB\u3078\u30B8\u30E3\u30F3\u30D7\u3057\u307E\u3059\u3002"
+      m_tooltip: 

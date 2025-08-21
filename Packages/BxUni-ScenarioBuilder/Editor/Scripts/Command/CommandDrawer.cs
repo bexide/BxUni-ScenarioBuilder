@@ -9,6 +9,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEditor;
 using BxUni.ScenarioBuilder.Editor;
+using BxUni.ScenarioBuilderInternal;
 
 namespace BxUni.ScenarioBuilder.EditorInternal
 {
@@ -60,7 +61,16 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
             if (rect.Contains(ev.mousePosition))
             {
-                TooltipMessage = m_tooltip;
+                var classType = GetClassType();
+
+                string tooltip = m_tooltip;
+                if(string.IsNullOrEmpty(tooltip) 
+                && AttributeUtility.TryGetClassAttribute<CommandTooltipAttribute>(classType, out var tooltipAttribute))
+                {
+                    tooltip = tooltipAttribute.Tooltip;
+                }
+
+                TooltipMessage = tooltip;
 
                 EditorGUIUtility.AddCursorRect(rect, MouseCursor.Pan);
 
@@ -69,7 +79,6 @@ namespace BxUni.ScenarioBuilder.EditorInternal
 
                 if(!ev.LeftMouseDown()) { return; }
 
-                var classType = GetClassType();
                 if(typeof(BaseCommand).IsAssignableFrom(classType))
                 {
                     CreateInstanceFunc = 

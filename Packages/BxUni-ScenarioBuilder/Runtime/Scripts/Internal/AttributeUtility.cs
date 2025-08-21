@@ -8,6 +8,44 @@ namespace BxUni.ScenarioBuilderInternal
     internal static class AttributeUtility
     {
         /// <summary>
+        /// ClassについているAttributeのデータを取得
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="classType"></param>
+        /// <returns></returns>
+        internal static T GetClassAttribute<T>(System.Type classType)
+            where T : System.Attribute
+        {
+            return classType.GetCustomAttribute<T>();
+        }
+
+        /// <summary>
+        /// Classに指定のAttributeが付いているかどうか
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="classType"></param>
+        /// <returns></returns>
+        internal static bool HasClassAttribute<T>(System.Type classType)
+            where T : System.Attribute
+        {
+            return classType.GetCustomAttribute<T>() != null;
+        }
+
+        /// <summary>
+        /// Classに指定のAttributeがついているかどうか
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="classType"></param>
+        /// <param name="attribute"></param>
+        /// <returns></returns>
+        internal static bool TryGetClassAttribute<T>(System.Type classType, out T attribute)
+            where T : System.Attribute
+        {
+            attribute = GetClassAttribute<T>(classType);
+            return attribute != null;
+        }
+
+        /// <summary>
         /// MethodについてるAttributeのデータを取得
         /// </summary>
         /// <typeparam name="T"></typeparam>

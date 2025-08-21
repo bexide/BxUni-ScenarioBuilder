@@ -8,6 +8,8 @@ namespace BxUni.ScenarioBuilder
     /// <summary>
     /// targetLabelで指定した文字列と一致するLabelCommandまでジャンプするコマンド。
     /// </summary>
+    [System.Serializable]
+    [CommandTooltip("対象のラベルへジャンプします。")]
     public class JumpCommand : BaseCommand
         , IJumpCommand
     {

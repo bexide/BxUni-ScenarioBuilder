@@ -10,6 +10,7 @@ namespace BxUni.ScenarioBuilder
     /// <para>JumpCommandの飛び先等で使用する</para>
     /// </summary>
     [System.Serializable]
+    [CommandTooltip("ジャンプ先のラベルを設定します。")]
     public class LabelCommand : BaseCommand
     {
 #pragma warning disable 0649
