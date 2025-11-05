@@ -1,0 +1,23 @@
+{
+    "name": "BxUni.ScenarioBuilder.Sample.InsertScenario.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6600a55e097ada8448f7b8ad8affc813",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "",
+            "define": "SCENARIOBUILDER_UNITASK_SUPPORT"
+        }
+    ],
+    "noEngineReferences": false
+}

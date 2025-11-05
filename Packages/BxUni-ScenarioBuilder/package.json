@@ -1,7 +1,7 @@
 {
   "name": "jp.co.bexide.bxuni.scenariobuilder",
   "displayName": "BxUni-ScenarioBuilder",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "unity": "2021.3",
   "license": "",
   "author": {
@@ -30,6 +30,10 @@
     {
       "displayName": "3 - EditWindow Menu Add",
       "path": "Samples~/3 - EditWindow Menu Add"
+    },
+    {
+      "displayName": "4 - Insert Scenario Demo",
+      "path": "Samples~/4 - Insert Scenario Demo"
     }
   ]
 }

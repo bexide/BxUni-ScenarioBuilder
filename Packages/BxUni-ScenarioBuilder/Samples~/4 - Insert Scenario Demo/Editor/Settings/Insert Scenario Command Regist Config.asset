@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e1239345d8e474183d827065eb3c5e, type: 3}
+  m_Name: Insert Scenario Command Regist Config
+  m_EditorClassIdentifier: 
+  m_commandDrawerGroup:
+  - m_groupName: "\u30B7\u30CA\u30EA\u30AA\u5272\u308A\u8FBC\u307F"
+    m_enabled: 1
+    m_color: {r: 1, g: 0, b: 0, a: 0}
+    m_commandDrawers:
+    - m_viewName: "\u30ED\u30B0\u51FA\u529B"
+      m_icon: {fileID: 0}
+      m_script: {fileID: 11500000, guid: f00f92e32df836a4aa68a98aef3b153f, type: 3}
+      m_tooltip: "\u8A2D\u5B9A\u3057\u305F\u6587\u5B57\u5217\u3092\u30ED\u30B0\u306B\u51FA\u529B\u3057\u307E\u3059"
+    - m_viewName: "\u30B7\u30CA\u30EA\u30AA\u5272\u308A\u8FBC\u307F"
+      m_icon: {fileID: 0}
+      m_script: {fileID: 11500000, guid: 388f05ca444f7074e826a1ee2cbc6e45, type: 3}
+      m_tooltip: "\u5225\u306E\u30B7\u30CA\u30EA\u30AA\u30A2\u30BB\u30C3\u30C8\u3092\u5272\u308A\u8FBC\u307F\u3057\u307E\u3059"

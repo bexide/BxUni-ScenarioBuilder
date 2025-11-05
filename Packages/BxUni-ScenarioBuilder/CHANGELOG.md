@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [v1.1.0](2025/11/05)
+[Fixed]
+- Unity6を使用している場合は、`FindObjectsOfType`を使っている所を`FindObjectsByType(FindObjectSortMode.None)`に変更
+
+[Changed]
+- CommandRegistConfigアセットで設定していたTooltipをAttributeで設定できるようにする`CommandTooltipAttribute`の追加
+    - 両方設定している場合はCommandRegistConfigの方が適用されます。
+- コマンドの表示テキストを変えるだけならEditor拡張をせずにできるように、BaseCommandに`GetDefaultText()`メソッドを追加
+
+[Added]
+- シナリオ再生中に別のシナリオアセットを割り込みで呼ぶ機能の追加
+    - 挙動確認用にサンプルを追加しました。
+
 ## [v1.0.5](2024/05/20)
 [Fixed]
 - BaseCommandを継承したクラスをさらに継承したクラスがEditorWindow上で設定できない問題の修正

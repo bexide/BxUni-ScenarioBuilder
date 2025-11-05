@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838a300e457975f4b8347632e37a6e78, type: 3}
+  m_Name: Main Scenario
+  m_EditorClassIdentifier: 
+  m_commands:
+  - rid: 6803285488639934703
+  - rid: 6803285488639934704
+  - rid: 6803285488639934702
+  references:
+    version: 2
+    RefIds:
+    - rid: 6803285488639934702
+      type: {class: LogCommand, ns: BxUni.ScenarioBuilder.Sample.InsertScenario, asm: BxUni.ScenarioBuilder.Sample.InsertScenario.Runtime}
+      data:
+        text: "\u30E1\u30A4\u30F3\u30B7\u30CA\u30EA\u30AA\u7D42\u4E86"
+    - rid: 6803285488639934703
+      type: {class: LogCommand, ns: BxUni.ScenarioBuilder.Sample.InsertScenario, asm: BxUni.ScenarioBuilder.Sample.InsertScenario.Runtime}
+      data:
+        text: "\u30E1\u30A4\u30F3\u30B7\u30CA\u30EA\u30AA\u958B\u59CB"
+    - rid: 6803285488639934704
+      type: {class: InsertScenarioCommand, ns: BxUni.ScenarioBuilder.Sample.InsertScenario, asm: BxUni.ScenarioBuilder.Sample.InsertScenario.Runtime}
+      data:
+        insertScenario: {fileID: 11400000, guid: 9cc387455e833d349b22f55931aa5c73, type: 2}
